@@ -1,0 +1,53 @@
+.header{
+    grid-area: header;
+    border: 1px black solid;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    background-color: rgb(83, 117, 180);
+    max-width: 100%;
+}
+
+.header img{
+    margin-right: 10px;
+}
+
+.header h1{
+    margin-right: 500px;
+}
+
+.header h3{
+    margin-right: 450px;
+}
+
+.descripcion-contenedor{
+    border: 1px black solid;
+    padding-top: 10px;
+    display:flex; 
+    justify-content: space-around;
+    height: 300px;  
+}
+
+.descripcion-contenedor div{
+    border: 1px black solid;
+    flex-basis: 550px;
+}
+
+.descripcion-contenedor img{
+    width: 100%;
+    height: 100%;
+}
+
+.a{
+    grid-area: grupos;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.main-contenedor{
+    display: grid;
+    grid-template-areas: ' header ';
+}
