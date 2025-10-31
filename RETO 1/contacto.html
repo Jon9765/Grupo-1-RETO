@@ -6,13 +6,16 @@
     <title>Trambot</title>
     <link rel="icon" type="image/webp" href="img/logotipo.webp">
     <link rel="stylesheet" href="CSS/contactos_estilos.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
     <div class="main-contenedor">
-        <div class="header" id="header">
+        <header class="header">
             <img src="img/logotipo.webp" height="50" width="50">
             <h1>Trambot</h1>
-            <h3 id="paginactual">Inicio</h3>
+            <h3 id="paginactual">Contacto</h3>
             <nav id="menu">
                 <ul>
                     <li>☰
@@ -20,36 +23,34 @@
                             <li><a href="index.html">Inicio</a></li>
                             <li><a href="servicios.html">Servicios</a></li>
                             <li><a href="contacto.html">Contacto</a></li>
-                            <li><a href="#">Sobre Nosotros</a></li>  
+                            <li><a href="sobreNosotros.html">Sobre Nosotros</a></li>  
                         </ul>
                     </li>
                 </ul>
             </nav>
             <button class="sesion">Iniciar Sesion</button>
-        </div>
+        </header><br>
         <div class="main-contenedor">
-            <div class="contenedor-fomulario">
+            <div class="contenedor-formulario">
                 <h2>Contactanos</h2>
                 <form method="post">
-                    <label for="correo">Correo:</label>
-                    <input type="text" id="correo" name="correo" required>
-                    <label for="asunto">Asunto:</label>
-                    <input type="text" id="asunto" name="asunto" required>
-                    <label for="mensaje">Mensaje:</label>
-                    <textarea id="mensaje" name="mensaje" required></textarea>
+                    <label for="correo">Correo:</label><br><br>
+                    <input type="text" id="correo" name="correo" required><br><br>
+                    <label for="asunto">Asunto:</label><br><br>
+                    <input type="text" id="asunto" name="asunto" required><br><br>
+                    <label for="mensaje">Mensaje:</label><br>
+                    <textarea id="mensaje" name="mensaje" required></textarea><br><br>
                     <button type="submit">Enviar</button>
                 </form>
             </div>
         </div>
         <footer class="footer">
-            <div class="ubicacion">Aqui pondremos la api de leaflet</div>
-            <div class="redes">
-                
-            </div>
-            <div class="contacto"></div>
-            <div class="legal"></div>
-            <div class="elementos"> © 2025 Trambot. Todos los derechos reservados.</div>
+            <div class="ubicacion"><h2>Nuestra ubicacion</h2> <div id="map"></div></div>
+            <div class="redes"><h2>Nuestras redes sociales</h2><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="#" target="_blank"><i class="fab fa-instagram"></i></a><a href="#" target="_blank"><i class="fab fa-twitter"></i></a><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></div>
+            <div class="contacto"><h2>Formas de contacto</h2> <p>Email: trambot@gmail.com</p> <p>Num:+34 23849348</p> </div>
+            <div class="elementos"> <p>© 2025 Trambot. Todos los derechos reservados. - <a href="#">Aviso legal</a> - <a href="#">Politica de cookies</a> - <a href="#">Terminos de uso</a> </p> </div>
         </footer>
     </div>
+    <script src="JavaScript/scripts.js"></script>
 </body>
 </html>

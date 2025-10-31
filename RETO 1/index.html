@@ -6,8 +6,9 @@
     <title>Trambot</title>
     <link rel="icon" type="image/webp" href="img/logotipo.webp">
     <link rel="stylesheet" href="CSS/estilos.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-
 </head>
 <body>
     <div class="main-contenedor">
@@ -22,7 +23,7 @@
                             <li><a href="index.html">Inicio</a></li>
                             <li><a href="servicios.html">Servicios</a></li>
                             <li><a href="contacto.html">Contacto</a></li>
-                            <li><a href="#">Sobre Nosotros</a></li>  
+                            <li><a href="sobreNosotros.html">Sobre Nosotros</a></li>  
                         </ul>
                     </li>
                 </ul>
@@ -67,15 +68,12 @@
             </div>
         </div>
         <footer class="footer">
-            <div class="ubicacion">Aqui pondremos la api de leaflet</div>
-            <div class="redes">
-                <h2>Nuestras redes sociales</h2>   
-                <div class="icono"><a href="https://www.facebook.com" target="_blank"></a><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a><a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a></div>
-            </div>
-            <div class="contacto"></div>
-            <div class="legal"></div>
-            <div class="elementos"> © 2025 Trambot. Todos los derechos reservados.</div>
+            <div class="ubicacion"><h2>Nuestra ubicacion</h2> <div id="map"></div></div>
+            <div class="redes"><h2>Nuestras redes sociales</h2><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="#" target="_blank"><i class="fab fa-instagram"></i></a><a href="#" target="_blank"><i class="fab fa-twitter"></i></a><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></div>
+            <div class="contacto"><h2>Formas de contacto</h2> <p>Email: trambot@gmail.com</p> <p>Num:+34 23849348</p> </div>
+            <div class="elementos"> <p>© 2025 Trambot. Todos los derechos reservados. - <a href="#">Aviso legal</a> - <a href="#">Politica de cookies</a> - <a href="#">Terminos de uso</a> </p> </div>
         </footer>
+
     </div>
     <script src="JavaScript/scripts.js"></script>
 </body>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mostrar div encima</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+    #overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    #popup {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    button {
+      padding: 10px 15px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Página principal</h1>
+  <p>Haz clic en el botón para mostrar el div oculto.</p>
+  <button onclick="mostrarPopup()">Mostrar div1</button>
+  <button onclick="mostrarPopup()">Mostrar div2</button>
+
+  <div id="overlay">
+    <div id="popup">
+      <h2>Div encima de la página</h2>
+      <p>Este div aparece sobre todo el contenido.</p>
+      <button onclick="cerrarPopup()">Cerrar</button>
+    </div>
+  </div>
+
+
+  <script>
+    function mostrarPopup() {
+      document.getElementById('overlay').style.display = 'flex';
+    }
+    function cerrarPopup() {
+      document.getElementById('overlay').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

@@ -3,7 +3,8 @@
   --color-secundario: #2d9494;   
   --color-acento: #66c7c7;      
   --color-fondo: #f5f9fa;        
-  --color-texto: #333333;        
+  --color-texto: #333333;     
+  --color-footer: #f5f9fa;   
 }
 body{    
     margin:0;
@@ -28,14 +29,13 @@ body{
 }
 
 .header h1{
-    margin-right: 500px;
+    margin-right: 420px;
 }
 
 .header h3{
     margin-right: 450px;
     font-size: 25px;
 }
-
 
 .sesion{
     border-radius: 15px;
@@ -122,11 +122,7 @@ body{
 .contenedor-servicios:hover .invi{
     opacity: 1;               
 }
-.servicio-contenedor{
-    padding-top: 10px;
-    margin-top: 50px;
-  
-}
+
 #menu ul{
     list-style: none;
     margin: 0;
@@ -182,67 +178,61 @@ body{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 15px;
-    width: 100%;
-    border: 2px black solid;
     margin-top: 50px;
     background-color: var(--color-primario);
-    color: var(--color-texto);
+    color: var(--color-footer);
     grid-template-rows: auto;
     
 }
 
 .footer .ubicacion, .footer .redes, .footer .contacto, .footer .legal, .footer .elementos{
-    border: 1px black solid;
-    margin: 10px;
-    height: auto;
+    height: fit-content;
     width: auto;
-    padding: 10px;
-    border-radius: 15px;
-    border-left: 4px solid var(--color-secundario);
 }
 
 .redes{
     grid-column-start: 3;
-    background-color: #ffffff;
     grid-column: span 1/ span 1;
     justify-content: center;
-    align-items: center;
-    gap: 20px;
     height: 100%;
 }
 
-
-.footer .redes .iconos {
-    padding-left: 20px;
-    margin-top: 10px; 
-    height: 20px;
+.footer .redes a{
+    color: var(--color-footer);
 }
 
+.footer .redes a i{
+    padding-inline: 20px;
+    text-align: center;
+}
 
 .ubicacion{
     grid-column-start: 1;
     grid-column: span 2 / span 2;
     grid-row: span 2 / span 2;
-    background-color: #ffffff;
+    height: fit-content;
+    text-align: center;
+    justify-items: center;
 }
 
-.legal{
-    grid-column-start: 3;
-    grid-row-start: 2;
-    background-color: #ffffff;
+#map{
+    height: 350px;
+    width: 450px;
+
 }
 
 .contacto{
-    grid-row-start: 3;
-    background-color: #ffffff;
+    grid-column-start: 3;
+    grid-row-start: 2;
 }
 
 .elementos{
-    grid-column: span 2 / span 2;
+    grid-column: span 3 / span 3;
     grid-row-start: 3;
-    background-color: #ffffff;
+    grid-column-start: 1;
+    text-align: center;
 }
+
 .header h1 {
     color: white;
 }
@@ -257,4 +247,8 @@ body{
 }
 .contenedor-servicios h4 {
     color: var(--color-primario);
+}
+.footer .elementos a {
+    color: var(--color-footer);
+    
 }
