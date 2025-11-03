@@ -6,6 +6,11 @@
   --color-texto: #333333;     
   --color-footer: #f5f9fa;   
 }
+
+* {
+  box-sizing: border-box;
+}
+
 body{    
     margin:0;
     background-color: var(--color-fondo);

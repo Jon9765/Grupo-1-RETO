@@ -86,3 +86,6 @@ body{
 #menu ul li:hover > ul{
     display: block;
 }
+#overley{
+    text-align: center;
+}

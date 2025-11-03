@@ -4,8 +4,14 @@
   --color-acento: #66c7c7;      
   --color-fondo: #f5f9fa;        
   --color-texto: #333333;     
-  --color-footer: #f5f9fa;   
+  --color-footer: #f5f9fa;
+  --color-dorado: #bf955c;   
 }
+
+* {
+  box-sizing: border-box;
+}
+
 body{    
     margin:0;
     background-color: var(--color-fondo);
@@ -101,7 +107,7 @@ body{
     justify-content: center;
     text-align: center;
     padding: 10px;
-    transition: max-height 2.5s ease; 
+    transition: max-height 2.5s ease, border-left 0.5s; 
     margin: 5px;
     background-color: white;
     border-left: 4px solid var(--color-secundario);
@@ -116,7 +122,8 @@ body{
 }
 
 .contenedor-servicios:hover{
-    max-height: 300px;     
+    max-height: 300px;
+    border-left: 4px solid var(--color-dorado) ;     
 }
 
 .contenedor-servicios:hover .invi{

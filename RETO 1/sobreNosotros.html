@@ -15,11 +15,12 @@
       align-items: center;
       z-index: 1000;
     }
-    #popup {
+    #popup,#popup2,#popup3 {
       background: white;
       padding: 20px;
       border-radius: 8px;
       text-align: center;
+      display: none;
     }
     button {
       padding: 10px 15px;
@@ -34,24 +35,59 @@
 <body>
   <h1>Página principal</h1>
   <p>Haz clic en el botón para mostrar el div oculto.</p>
-  <button onclick="mostrarPopup()">Mostrar div1</button>
-  <button onclick="mostrarPopup()">Mostrar div2</button>
+  <button onclick="mostrarPopup(1)">Mostrar div1</button>
+  <button onclick="mostrarPopup(2)">Mostrar div2</button>
+
 
   <div id="overlay">
     <div id="popup">
-      <h2>Div encima de la página</h2>
+      <h2>Div encima de la página</h2><br>
       <p>Este div aparece sobre todo el contenido.</p>
-      <button onclick="cerrarPopup()">Cerrar</button>
+      <button onclick="cerrarPopup(1)">Cerrar</button>
+    </div>
+    <div id="popup2">
+      <h2>Div encima de la página2</h2>
+      <p>Este div aparece sobre todo el contenido.2</p>
+      <button onclick="cerrarPopup(2)">Cerrar</button>
+    </div>
+    <div id="popup3">
+      <h2>Div encima de la página2</h2>
+      <p>Este div aparece sobre todo el contenido.2</p>
+      <button onclick="cerrarPopup(3)">Cerrar</button>
     </div>
   </div>
 
 
-  <script>
-    function mostrarPopup() {
-      document.getElementById('overlay').style.display = 'flex';
+  <script>   
+    function mostrarPopup(Num) {
+    
+    document.getElementById('overlay').style.display = 'flex';
+      switch (Num) {
+        case 1:
+          document.getElementById('popup').style.display = 'block'
+          break
+        case 2:
+          document.getElementById('popup2').style.display = 'block'
+          break;
+        case 3:
+          document.getElementById('popup3').style.display = 'block'
+          break;
+      }
+    
     }
-    function cerrarPopup() {
-      document.getElementById('overlay').style.display = 'none';
+    function cerrarPopup(Num) {
+    document.getElementById('overlay').style.display = 'none';
+   switch (Num) {
+        case 1:
+          document.getElementById('popup').style.display = 'none'
+          break
+        case 2:
+          document.getElementById('popup2').style.display = 'none'
+          break;
+        case 3:
+          document.getElementById('popup3').style.display = 'none'
+          break;
+      }
     }
   </script>
 </body>

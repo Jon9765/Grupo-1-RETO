@@ -16,23 +16,25 @@
             <img src="img/logotipo.webp" height="50" width="50">
             <h1>Trambot</h1>
             <h3 id="paginactual">Servicios</h3>
-            <nav id="menu">
-                <ul>
-                    <li>☰
-                        <ul>
-                            <li><a href="index.html">Inicio</a></li>
-                            <li><a href="servicios.html">Servicios</a></li>
-                            <li><a href="contacto.html">Contacto</a></li>
-                            <li><a href="sobreNosotros.html">Sobre Nosotros</a></li>  
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-            <button class="sesion">Iniciar Sesion</button>
+            <div class="derecha"></div>
+                <nav id="menu">
+                    <ul>
+                        <li>☰
+                            <ul>
+                                <li><a href="index.html">Inicio</a></li>
+                                <li><a href="servicios.html">Servicios</a></li>
+                                <li><a href="contacto.html">Contacto</a></li>
+                                <li><a href="sobreNosotros.html">Sobre Nosotros</a></li>  
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <button class="sesion">Iniciar Sesion</button>
+            </div>
         </div><br>
         <main class="main">
             <div class="greeder">
-                <div class="grupo1">
+                <div class="grupo1"  onclick="mostrarPanel(1)">
                     <h2 class="servicio1">Padrón y Registro Civil</h2>
                     <p class="descripcion1">
                         <br>- Certificado de empadronamiento
@@ -43,7 +45,7 @@
                     </p>
                 </div>
 
-                <div class="grupo2">
+                <div class="grupo2" onclick="mostrarPanel(2)">
                     <h2 class="servicio2">Licencias y Permisos</h2>
                     <p class="descripcion2">
                         - Licencia de obras menores<br>
@@ -54,7 +56,7 @@
                     </p>
                 </div>
 
-                <div class="grupo3">
+                <div class="grupo3" onclick="mostrarPanel(3)">
                     <h2 class="servicio3">Economía e Impuestos</h2>
                     <p class="descripcion3">
                         - Pago de IBI, IVTM, basura, terrazas<br>
@@ -65,7 +67,7 @@
             
                 </div>
 
-                <div class="grupo4">
+                <div class="grupo4" onclick="mostrarPanel(4)">
                     <h2 class="servicio4">Movilidad y Transporte</h2>
                     <p class="descripcion4">
                         - Multas y sanciones<br>
@@ -76,7 +78,7 @@
                     </p>
                 </div>
 
-                <div class="grupo5">
+                <div class="grupo5" onclick="mostrarPanel(5)">
                     <h2 class="servicio5">Vivienda y Medio Ambiente</h2>
                     <p class="descripcion5">
                         - Solicitud de vivienda pública<br>
@@ -85,12 +87,59 @@
                     </p>
                 </div>
             </div>
+            <div id="main-panel">
+    <div id="panel1">
+      <h2>Padrón y Registro Civil</h2><br>
+      <p><b>Certificado de empadronamiento:</b> acredita el domicilio y residencia en un municipio; se usa para trámites como sanidad, educación o ayudas.<br>
+        <b>Alta / baja / cambio de domicilio:</b> actualizan el padrón municipal según los movimientos de residencia.<br>
+        <b>Certificados de nacimiento, matrimonio y defunción:</b> emitidos por el Registro Civil, acreditan hechos del estado civil.<br>
+        <b>Identificación electrónica (BakQ, DNIe):</b> permiten realizar trámites online con seguridad y firma digital.<br>
+        <b>Buzón ciudadano / sugerencias: canal para enviar quejas o propuestas y fomentar la participación ciudadana.</b>
+       </p>
+      <button onclick="cerrarPanel(1)">Cerrar</button>
+    </div>
+    <div id="panel2">
+      <h2>Licencias y Permisos</h2>
+      <p>Este div aparece sobre todo el contenido.2</p>
+      <button onclick="cerrarPanel(2)">Cerrar</button>
+    </div>
+    <div id="panel3">
+      <h2>Economía e Impuestos</h2>
+      <p>Este div aparece sobre todo el contenido.2</p>
+      <button onclick="cerrarPanel(3)">Cerrar</button>
+    </div>
+    <div id="panel4">
+      <h2>Movilidad y Transporte</h2>
+      <p>Este div aparece sobre todo el contenido.2</p>
+      <button onclick="cerrarPanel(4)">Cerrar</button>
+    </div>
+    <div id="panel5">
+      <h2>Vivienda y Medio Ambiente </h2>
+      <p>Este div aparece sobre todo el contenido.2</p>
+      <button onclick="cerrarPanel(5)">Cerrar</button>
+    </div>
+  </div>
         </main>
        <footer class="footer">
-            <div class="ubicacion"><h2>Nuestra ubicacion</h2> <div id="map"></div></div>
-            <div class="redes"><h2>Nuestras redes sociales</h2><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="#" target="_blank"><i class="fab fa-instagram"></i></a><a href="#" target="_blank"><i class="fab fa-twitter"></i></a><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></div>
-            <div class="contacto"><h2>Formas de contacto</h2> <p>Email: trambot@gmail.com</p> <p>Num:+34 23849348</p> </div>
-            <div class="elementos"> <p>© 2025 Trambot. Todos los derechos reservados. - <a href="#">Aviso legal</a> - <a href="#">Politica de cookies</a> - <a href="#">Terminos de uso</a> </p> </div>
+            <div class="ubicacion">
+                <h2>Nuestra ubicacion</h2> 
+                <div id="map"></div>
+            </div>
+            <div class="redes">
+                <h2>Nuestras redes sociales</h2>
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="contacto">
+                <h2>Formas de contacto</h2>
+                <p>Email: trambot@gmail.com</p>
+                <p>Num:+34 23849348</p>
+            </div>
+            <div class="elementos">
+                <p>© 2025 Trambot. Todos los derechos reservados. - <a href="#">Aviso legal</a> - <a href="#">Politica de cookies</a> - <a href="#">Terminos de uso</a> </p> 
+            </div>
         </footer>
     </div>
     <script src="JavaScript/scripts.js"></script>

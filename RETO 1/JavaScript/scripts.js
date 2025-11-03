@@ -7,33 +7,49 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 const marker = L.marker([43.320324, -1.972454]).addTo(map)
     .bindPopup('<b>Trambot </b><br> Nuestra empresa <img src=img/empresa.webp width=150px height=100px>').onClick(openPopup());
-    function mostrarPanel(valor) {
-        switch(valor){
-            case 1:
-                document.getElementById('panel1').style.display = 'flex';
-            case 2:
-                document.getElementById('panel2').style.display = 'flex';
-            case 3:
-                document.getElementById('panel3').style.display = 'flex';
-            case 4:
-                document.getElementById('panel4').style.display = 'flex';
-            case 5:
-                document.getElementById('panel5').style.display = 'flex';
-        }
+    
+  
+    function mostrarPanel(Num) {
+    
+    document.getElementById('main-panel').style.display = 'flex';
+      switch (Num) {
+        case 1:
+          document.getElementById('panel1').style.display = 'block'
+          break
+        case 2:
+          document.getElementById('panel2').style.display = 'block'
+          break;
+        case 3:
+          document.getElementById('panel3').style.display = 'block'
+          break;
+          case 4:
+          document.getElementById('panel4').style.display = 'block'
+          break;
+          case 5:
+          document.getElementById('panel5').style.display = 'block'
+          break;
+      }
+    
+    }
+    function cerrarPanel(Num) {
+    document.getElementById('main-panel').style.display = 'none';
+   switch (Num) {
+        case 1:
+          document.getElementById('panel1').style.display = 'none'
+          break
+        case 2:
+          document.getElementById('panel2').style.display = 'none'
+          break;
+        case 3:
+          document.getElementById('panel3').style.display = 'none'
+          break;
+        case 4:
+          document.getElementById('panel4').style.display = 'none'
+          break;
+        case 5:
+          document.getElementById('panel5').style.display = 'none'
+          break;
       
-    }
-    function cerrarPanel(valor) {
-       switch(valor){
-            case 1:
-                      document.getElementById('overlay').style.display = 'none';
-            case 2:
-                      document.getElementById('overlay').style.display = 'none';
-            case 3:
-                      document.getElementById('overlay').style.display = 'none';
-            case 4:
-                      document.getElementById('overlay').style.display = 'none';
-            case 5:
-                document.getElementById('overlay').style.display = 'none';
         }
     }
-
+  
