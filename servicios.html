@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trambot</title>
+    <link rel="icon" type="image/webp" href="img/logotipo.webp">
+    <link rel="stylesheet" href="CSS/servicios-estilos.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+    <div class="main-contenedor">
+        <div class="header" id="header">
+            <img src="img/logotipo.webp" height="50" width="50">
+            <h1>Trambot</h1>
+            <h3 id="paginactual">Servicios</h3>
+            <div class="derecha"></div>
+                <nav id="menu">
+                    <ul>
+                        <li>☰
+                            <ul>
+                                <li><a href="index.html">Inicio</a></li>
+                                <li><a href="servicios.html">Servicios</a></li>
+                                <li><a href="contacto.html">Contacto</a></li>
+                                <li><a href="sobreNosotros.html">Sobre Nosotros</a></li>  
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <button class="sesion">Iniciar Sesion</button>
+            </div>
+        </div><br>
+        <main class="main">
+            <div class="greeder">
+                <div class="grupo1"  onclick="mostrarPanel(1)">
+                    <h2 class="servicio1">Padrón y Registro Civil</h2>
+                    <p class="descripcion1">
+                        <br>- Certificado de empadronamiento
+                        <br>- Alta / baja / cambio de domicilio
+                        <br>- Certificados de nacimiento, matrimonio, defunción
+                        <br>- Identificación electrónica (BakQ, DNIe)
+                        <br>- buzón ciudadano / sugerencias
+                    </p>
+                </div>
+
+                <div class="grupo2" onclick="mostrarPanel(2)">
+                    <h2 class="servicio2">Licencias y Permisos</h2>
+                    <p class="descripcion2">
+                        - Licencia de obras menores<br>
+                        - Licencia de actividad o apertura<br>
+                        - Ocupación de vía pública / terrazas<br>
+                        - Permiso para rodajes o eventos<br>
+                        - Declaración responsable de guías turísticos
+                    </p>
+                </div>
+
+                <div class="grupo3" onclick="mostrarPanel(3)">
+                    <h2 class="servicio3">Economía e Impuestos</h2>
+                    <p class="descripcion3">
+                        - Pago de IBI, IVTM, basura, terrazas<br>
+                        - Declaración de la Renta<br>
+                        - Certificados fiscales, censos, IVA<br>
+                        - Becas y programas de prácticas
+                    </p>
+            
+                </div>
+
+                <div class="grupo4" onclick="mostrarPanel(4)">
+                    <h2 class="servicio4">Movilidad y Transporte</h2>
+                    <p class="descripcion4">
+                        - Multas y sanciones<br>
+                        - Tarjeta de residente (zonas OTA)<br>
+                        - Licencias de transporte<br>
+                        - Certificado CAP<br>
+                        - Autorizaciones especiales de transporte
+                    </p>
+                </div>
+
+                <div class="grupo5" onclick="mostrarPanel(5)">
+                    <h2 class="servicio5">Vivienda y Medio Ambiente</h2>
+                    <p class="descripcion5">
+                        - Solicitud de vivienda pública<br>
+                        - Dependencia y ayudas familiares<br>
+                        - Autorizaciones ambientales
+                    </p>
+                </div>
+            </div>
+    <div id="main-panel">
+    <div id="panel1">
+      <h2>Padrón y Registro Civil</h2>
+      <p><b>Certificado de empadronamiento:</b> acredita el domicilio y residencia en un municipio; se usa para trámites como sanidad, educación o ayudas.<br>
+        <b>Alta / baja / cambio de domicilio:</b> actualizan el padrón municipal según los movimientos de residencia.<br>
+        <b>Certificados de nacimiento, matrimonio y defunción:</b> emitidos por el Registro Civil, acreditan hechos del estado civil.<br>
+        <b>Identificación electrónica (BakQ, DNIe):</b> permiten realizar trámites online con seguridad y firma digital.<br>
+        <b>Buzón ciudadano / sugerencias: canal para enviar quejas o propuestas y fomentar la participación ciudadana.</b>
+       </p>
+       <div class="pagos">
+            <div class="basic">
+                <h2><b>Basic</b></h2>
+                <h2>15$/anual</h2>
+                <p>
+                    -5 tramites mensuales<br>
+                    -servicios administrativos principales<br>
+                    -gestor IA<br>
+                    -Guía paso a paso automatizada.
+                </p> 
+              
+            </div>
+            <div class="premium">
+                <h2><b>Premium</b></h2>
+               <h2>25$/anual</h2>
+                <p>
+                    -trámites ilimitados<br>
+                    -todos los servicio administrativos (DGT, Ayuntamiento, Hacienda tributaria, becas, etc)<br>
+                    -gestor IA y atencion al cliente 24H<br>
+                    -automatizaciones de tramites(todo se renueva automáticamente)<br>
+                    -estado de tramitacion en tiempo real
+               </p> 
+            </div>
+            <div class="essential">
+                <h2><b>Essential</b></h2>
+                <h2>50$/anual</h2>
+                <p> 
+                    Acompañamiento personalizado 1 a 1 (gestor asignado).<br>
+                    Firma digital avanzada integrada<br>
+                    Representación legal para presentación de trámites complejos<br>
+                    Gestión y almacenamiento seguro de documentos en la nube.<br>
+                    Soporte 24/7.<br>
+                    Tramitación urgente (prioridad máxima).<br>
+                    Panel de control con reportes y analíticas.
+                </p>
+            </div>
+       </div>
+
+
+       
+      <button onclick="cerrarPanel(1)">Cerrar</button>
+    </div>
+    <div id="panel2">
+      <h2>Licencias y Permisos</h2>
+      <p>
+        <b>Licencia de obras menores:</b> autoriza pequeñas reformas;<br> 
+        <b>Licencia de actividad o apertura:</b> la puesta en marcha de negocios;<br> 
+        <b>Ocupación de vía pública o terrazas:</b> el uso temporal de espacios públicos.<br> 
+        <b>Permiso para rodajes o eventos:</b> controla filmaciones y actos en la vía pública.<br>
+        <b>Declaración responsable de guías turísticos:</b> permite ejercer la profesión acreditando el cumplimiento de los requisitos legales.</p>
+          <div class="pagos">
+            <div class="basic">
+                <h2><b>Basic</b></h2>
+                <h2>15$/anual</h2>
+                <p>
+                    -5 tramites mensuales<br>
+                    -servicios administrativos principales<br>
+                    -gestor IA<br>
+                    -Guía paso a paso automatizada.
+                </p> 
+              
+            </div>
+            <div class="premium">
+                <h2><b>Premium</b></h2>
+               <h2>25$/anual</h2>
+                <p>
+                    -trámites ilimitados<br>
+                    -todos los servicio administrativos (DGT, Ayuntamiento, Hacienda tributaria, becas, etc)<br>
+                    -gestor IA y atencion al cliente 24H<br>
+                    -automatizaciones de tramites(todo se renueva automáticamente)<br>
+                    -estado de tramitacion en tiempo real
+               </p> 
+            </div>
+            <div class="essential">
+                <h2><b>Essential</b></h2>
+                <h2>50$/anual</h2>
+                <p> 
+                    Acompañamiento personalizado 1 a 1 (gestor asignado).<br>
+                    Firma digital avanzada integrada<br>
+                    Representación legal para presentación de trámites complejos<br>
+                    Gestión y almacenamiento seguro de documentos en la nube.<br>
+                    Soporte 24/7.<br>
+                    Tramitación urgente (prioridad máxima).<br>
+                    Panel de control con reportes y analíticas.
+                </p>
+            </div>
+       </div>
+
+      <button onclick="cerrarPanel(2)">Cerrar</button>
+    </div>
+    <div id="panel3">
+      <h2>Economía e Impuestos</h2>
+      <p><b>El pago del IBI, IVTM, tasas de basura o terrazas:</b> garantiza la correcta gestión de los servicios municipales.<br>
+         <b>La Declaración de la Renta</b> es el principal procedimiento anual de tributación personal.<br>
+         <b>Los certificados fiscales, censos e IVA</b> facilitan la acreditación y control de la situación tributaria. Además,<br>
+         <b>Las becas y programas de prácticas</b> ofrecen apoyo económico y oportunidades formativas para estudiantes y jóvenes profesionales.</p>
+          <div class="pagos">
+            <div class="basic">
+                <h2><b>Basic</b></h2>
+                <h2>15$/anual</h2>
+                <p>
+                    -5 tramites mensuales<br>
+                    -servicios administrativos principales<br>
+                    -gestor IA<br>
+                    -Guía paso a paso automatizada.
+                </p> 
+              
+            </div>
+            <div class="premium">
+                <h2><b>Premium</b></h2>
+               <h2>25$/anual</h2>
+                <p>
+                    -trámites ilimitados<br>
+                    -todos los servicio administrativos (DGT, Ayuntamiento, Hacienda tributaria, becas, etc)<br>
+                    -gestor IA y atencion al cliente 24H<br>
+                    -automatizaciones de tramites(todo se renueva automáticamente)<br>
+                    -estado de tramitacion en tiempo real
+               </p> 
+            </div>
+            <div class="essential">
+                <h2><b>Essential</b></h2>
+                <h2>50$/anual</h2>
+                <p> 
+                    Acompañamiento personalizado 1 a 1 (gestor asignado).<br>
+                    Firma digital avanzada integrada<br>
+                    Representación legal para presentación de trámites complejos<br>
+                    Gestión y almacenamiento seguro de documentos en la nube.<br>
+                    Soporte 24/7.<br>
+                    Tramitación urgente (prioridad máxima).<br>
+                    Panel de control con reportes y analíticas.
+                </p>
+            </div>
+       </div>
+       
+         <button onclick="cerrarPanel(3)">Cerrar</button>
+    </div>
+    <div id="panel4">
+      <h2>Movilidad y Transporte</h2>
+      <p><b>La tramitación y gestión de multas y sanciones</b>, así como de la obtención o renovación de <b>la tarjeta de residente (zonas OTA)</b>. También gestionamos <b>licencias de transporte para empresas y autónomos</b>, el <b>certificado CAP para conductores profesionales</b>, y las <b>autorizaciones especiales de transporte</b> para vehículos con mercancías o dimensiones fuera de lo habitual. Simplificamos tus gestiones y te ayudamos a cumplir con la normativa vigente de forma rápida y segura.</p>
+        <div class="pagos">
+            <div class="basic">
+                <h2><b>Basic</b></h2>
+                <h2>15$/anual</h2>
+                <p>
+                    -5 tramites mensuales<br>
+                    -servicios administrativos principales<br>
+                    -gestor IA<br>
+                    -Guía paso a paso automatizada.
+                </p> 
+              
+            </div>
+            <div class="premium">
+                <h2><b>Premium</b></h2>
+               <h2>25$/anual</h2>
+                <p>
+                    -trámites ilimitados<br>
+                    -todos los servicio administrativos (DGT, Ayuntamiento, Hacienda tributaria, becas, etc)<br>
+                    -gestor IA y atencion al cliente 24H<br>
+                    -automatizaciones de tramites(todo se renueva automáticamente)<br>
+                    -estado de tramitacion en tiempo real
+               </p> 
+            </div>
+            <div class="essential">
+                <h2><b>Essential</b></h2>
+                <h2>50$/anual</h2>
+                <p> 
+                    Acompañamiento personalizado 1 a 1 (gestor asignado).<br>
+                    Firma digital avanzada integrada<br>
+                    Representación legal para presentación de trámites complejos<br>
+                    Gestión y almacenamiento seguro de documentos en la nube.<br>
+                    Soporte 24/7.<br>
+                    Tramitación urgente (prioridad máxima).<br>
+                    Panel de control con reportes y analíticas.
+                </p>
+            </div>
+       </div>   
+
+      <button onclick="cerrarPanel(4)">Cerrar</button>
+    </div>
+    <div id="panel5">
+      <h2>Vivienda y Medio Ambiente </h2>
+      <p>Gestionamos todo tipo de trámites relacionados con la vivienda y el bienestar social. Te asistimos en la solicitud de <b>vivienda pública</b>, ayudándote a reunir la documentación necesaria y seguir el proceso correctamente. También te orientamos en solicitudes <b>de dependencia y ayudas familiares</b>, para acceder a prestaciones y apoyos sociales. Además, nos ocupamos de la tramitación de <b>autorizaciones ambientales</b>, garantizando que tu actividad cumpla con la normativa ecológica y de sostenibilidad vigente. Nuestro objetivo es facilitarte cada gestión de forma ágil, transparente y personalizada.</p>
+        <div class="pagos">
+            <div class="basic">
+                <h2><b>Basic</b></h2>
+                <h2>15$/anual</h2>
+                <p>
+                    -5 tramites mensuales<br>
+                    -servicios administrativos principales<br>
+                    -gestor IA<br>
+                    -Guía paso a paso automatizada.
+                </p> 
+              
+            </div>
+            <div class="premium">
+                <h2><b>Premium</b></h2>
+               <h2>25$/anual</h2>
+                <p>
+                    -trámites ilimitados<br>
+                    -todos los servicio administrativos (DGT, Ayuntamiento, Hacienda tributaria, becas, etc)<br>
+                    -gestor IA y atencion al cliente 24H<br>
+                    -automatizaciones de tramites(todo se renueva automáticamente)<br>
+                    -estado de tramitacion en tiempo real
+               </p> 
+            </div>
+            <div class="essential">
+                <h2><b>Essential</b></h2>
+                <h2>50$/anual</h2>
+                <p> 
+                    Acompañamiento personalizado 1 a 1 (gestor asignado).<br>
+                    Firma digital avanzada integrada<br>
+                    Representación legal para presentación de trámites complejos<br>
+                    Gestión y almacenamiento seguro de documentos en la nube.<br>
+                    Soporte 24/7.<br>
+                    Tramitación urgente (prioridad máxima).<br>
+                    Panel de control con reportes y analíticas.
+                </p>
+            </div>
+       </div>
+       
+      <button onclick="cerrarPanel(5)">Cerrar</button>
+    </div>
+  
+
+
+   </div>
+        </main>
+       <footer class="footer">
+            <div class="ubicacion">
+                <h2>Nuestra ubicacion</h2> 
+                <div id="map"></div>
+            </div>
+            <div class="redes">
+                <h2>Nuestras redes sociales</h2>
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="contacto">
+                <h2>Formas de contacto</h2>
+                <p>Email: trambot@gmail.com</p>
+                <p>Num:+34 23849348</p>
+            </div>
+            <div class="elementos">
+                <p>© 2025 Trambot. Todos los derechos reservados. - <a href="#">Aviso legal</a> - <a href="#">Politica de cookies</a> - <a href="#">Terminos de uso</a> </p> 
+            </div>
+        </footer>
+    </div>
+    <script src="JavaScript/scripts.js"></script>
+</body>
+</html>
