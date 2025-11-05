@@ -1,0 +1,378 @@
+:root {
+  --color-primario: #1f4e79;     
+  --color-secundario: #2d9494;   
+  --color-acento: #66c7c7;      
+  --color-fondo: #f5f9fa;        
+  --color-texto: #333333;     
+  --color-footer: #f5f9fa;
+  --color-dorado: #bf955c;   
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body{    
+    margin:0;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--color-primario);
+    color: white;
+    margin: 0;
+    width: auto;
+    padding: 1rem;
+}
+
+.header img{
+    margin-right: 10px;
+    border-radius: 15px;
+}
+
+.header h1{
+    margin-right: 420px;
+}
+
+.header h3{
+    margin-right: 450px;
+    font-size: 25px;
+}
+
+.sesion{
+    border-radius: 15px;
+    padding: 5px 5px;
+    background-color: var(--color-secundario);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#menu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#menu ul a{
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+#menu{
+    width: 30px;
+}
+#menu ul li{
+    position: relative;
+    width: 100%;
+    font-size: 30px;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+#menu ul li:hover{
+    background-color: #545457;
+}
+#menu ul ul{
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #eee;
+    padding: 0;
+}
+#menu ul ul li{
+   float: none;
+   width: 150px;
+   background-color: #2e518b;
+}
+#menu ul ul a{
+    line-height: 120%;
+    padding: 10px 15px;
+}
+#menu ul li:hover > ul{
+    display: block;
+}
+
+.greeder {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    justify-items: center;
+    gap: 20px;
+}
+
+.greeder div {
+    border-radius: 15px;
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+    background-color: white;
+    border-left: 4px solid var(--color-secundario);
+    box-shadow: 0 4px 6px #0000001a;
+    width: 370px;
+    transition: border-left 0.5s;
+    cursor: pointer;
+    transform: 1s;
+}
+
+.greeder div:hover {
+    border-left: 4px solid var(--color-dorado);
+    transform: scale(1.20); 
+}
+
+.grupo5{
+    grid-column: 1 /-1;
+    justify-self: center;
+    align-self: center;
+}
+
+#panel1 p,#panel2 p,#panel3 p,#panel4 p, #panel5 p{
+    line-height: 1.5;
+}
+
+
+
+.footer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    margin-top: 50px;
+    background-color: var(--color-primario);
+    color: var(--color-footer);
+    grid-template-rows: auto;
+    
+}
+
+.footer .ubicacion, .footer .redes, .footer .contacto, .footer .legal, .footer .elementos{
+    height: fit-content;
+    width: auto;
+}
+
+.redes{
+    grid-column-start: 3;
+    grid-column: span 1 / span 1;
+    justify-content: center;
+    height: 100%;
+}
+
+.footer .redes a{
+    color: var(--color-footer);
+}
+
+.footer .redes a i{
+    padding-inline: 20px;
+    text-align: center;
+}
+
+.ubicacion{
+    grid-column-start: 1;
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    height: fit-content;
+    text-align: center;
+    justify-items: center;
+}
+
+#map{
+    height: 350px;
+    width: 450px;
+}
+
+.contacto{
+    grid-column-start: 3;
+    grid-row-start: 2;
+}
+
+.elementos{
+    grid-column: span 3 / span 3;
+    grid-row-start: 3;
+    grid-column-start: 1;
+    text-align: center;
+}
+
+.footer .elementos a {
+    color: var(--color-footer);
+    
+}
+
+.header h1 {
+    color: white;
+}
+
+.sesion:hover {
+    background-color: var(--color-acento);
+}
+
+#menu ul li ul {
+    background-color: var(--color-primario);
+}
+
+#menu ul li ul li a {
+    color: white;
+}
+
+#main-panel {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    
+}
+
+#panel1,#panel2,#panel3,#panel4,#panel5 {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    display: none;
+    text-align: justify;
+    width: 80%;
+    height: 90%;
+    overflow-y: scroll;
+}
+
+.pagos{
+    display: flex;
+    justify-content:space-between; 
+
+   
+}
+
+.pagos div{
+    border-left: 3px var(--color-acento) solid;
+    border-right: 3px var(--color-acento) solid;
+    min-width:300px;
+    margin: 10px;  
+    text-align: center;
+    border-radius: 15px;
+    width:33% ;
+}
+
+.pagos div:hover{
+    border-left:  3px var(--color-dorado) solid;
+    border-right:  3px var(--color-dorado) solid;
+}
+    
+#panel1 button, #panel2 button, #panel3 button, #panel4 button, #panel5 button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--color-secundario);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+
+@media only screen and (max-width: 900px){
+
+    .header{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    .header img {
+        width: 50px;
+        height: auto;
+        
+    }
+
+    .header h1, .header h3{
+        font-size: medium;
+        margin: 0.5rem 0;
+    }
+
+    .header h3{
+        margin-left: auto;
+        text-align: center;
+        margin-right: auto;
+    }
+
+    .derecha{
+        align-self: right;
+        margin-left: auto;
+    }
+
+    .greeder {
+        display:flex; 
+        flex-direction: column;
+        justify-items: center;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .greeder div {
+        border-radius: 15px;
+        text-align: center;
+        align-self: center;
+        margin-top: 30px ;
+    }
+
+
+    #main-panel {
+        position: fixed;
+    }
+
+    #panel1,#panel2,#panel3,#panel4,#panel5 {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        display: none;
+        text-align: justify;
+        width: 80%;
+        height: 90%;
+        overflow-y: scroll;
+    }
+
+
+    .pagos{
+        display: flex;
+        flex-direction: column;
+    }
+
+
+
+    .pagos div:hover{
+        border-left:  3px var(--color-dorado) solid;
+        border-right:  3px var(--color-dorado) solid;
+    }
+
+
+    .footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .ubicacion{
+        align-self: center;
+    }
+
+    .redes{
+        align-self: center;
+    }
+
+    .contacto{
+        align-self: center;
+    }
+}

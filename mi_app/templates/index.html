@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trambot</title>
+    <link rel="icon" type="image/webp" href="{{ url_for('static', filename='img/logotipo.webp') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/estilos.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+    <div class="main-contenedor">
+        <div class="header" id="header">
+            <img src="{{ url_for('static', filename='img/logotipo.webp') }}" height="50" width="50">
+            <h1>Trambot</h1>
+            <h3 id="paginactual">Inicio</h3>
+            <nav id="menu">
+                <ul>
+                    <li>☰
+                        <ul>
+                            <li><a href="{{ url_for('catalog.index') }}">Inicio</a></li>
+                            <li><a href="{{ url_for('catalog.servicio') }}">Servicios</a></li>
+                            <li><a href="{{ url_for('catalog.contactos') }}">Contacto</a></li> 
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <button class="sesion">Iniciar Sesion</button>
+        </div>
+        <div class="descripcion-contenedor">
+                <img src="{{url_for('static', filename='img/trabajadora.webp')}}">
+                <div class="descripcion-texto">
+                    <h2>¿Que hacemos?</h2>
+                    <p>Somos una empresa dedicada a <b>facilitar</b> y <b>agilizar</b> todo el proceso de realización de trámites, ofreciendo <b>seguridad</b>, <b>confianza</b>, <b>fiabilidad</b> y <b>precisión</b> en cada gestión. Nuestro objetivo es que los ciudadanos de San Sebastián puedan realizar sus trámites locales o de la Diputación de forma sencilla, rápida y sin complicaciones.
+                       Nos comprometemos a acompañar y asesorar a cada cliente durante todo el proceso, asegurando un servicio transparente, eficiente y de calidad, adaptado a sus necesidades. Con nosotros, tus gestiones estarán siempre en buenas manos.
+                    </p>
+                </div>
+            </div>
+        <div class="servicio-contenedor">
+            <h2>Servicios</h2>
+            <div class="servicios">
+                <div class="contenedor-servicios">
+                    <h4>Padrón y registro civil</h4>
+                    <div class="invi"><p>Este grupo se encarga de la gestión de la información ciudadana, como el empadronamiento y los cambios de domicilio. </p></div>
+                </div>
+                <div class="contenedor-servicios">
+                    <h4>Licencias y permisos</h4>
+                    <div class="invi"><p>Gestiona la tramitación de licencias necesarias para obras, aperturas de negocios, uso de espacios públicos o la organización de eventos.</p></div>
+                </div>
+                <div class="contenedor-servicios">
+                    <h4>Economía e impuestos</h4>
+                    <div class="invi"><p>Reúne los servicios relacionados con la gestión económica y tributaria del ciudadano, como la declaración de la renta.</p></div>
+                </div>
+
+                <div class="contenedor-servicios">
+                    <h4>Movilidad y transporte</h4>
+                    <div class="invi"><p>Ofrece servicios vinculados al transporte y la circulación, incluyendo el pago de multas, gestión de tarjetas de residente, licencias de transporte y autorizaciones especiales.</p></div>
+                </div>
+                <div class="contenedor-servicios">
+                    <h4>Vivienda y medio ambiente</h4>
+                    <div class="invi"><p>Engloba los servicios relacionados con el acceso a la vivienda pública, ayudas sociales y familiares, así como las autorizaciones y gestiones vinculadas a la protección del medio ambiente y la sostenibilidad.</p></div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="ubicacion"><h2>Nuestra ubicacion</h2> <div id="map"></div></div>
+            <div class="redes"><h2>Nuestras redes sociales</h2><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a><a href="#" target="_blank"><i class="fab fa-instagram"></i></a><a href="#" target="_blank"><i class="fab fa-twitter"></i></a><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></div>
+            <div class="contacto"><h2>Formas de contacto</h2> <p>Email: trambot@gmail.com</p> <p>Num:+34 23849348</p> </div>
+            <div class="elementos"> <p>© 2025 Trambot. Todos los derechos reservados. - <a href="#">Aviso legal</a> - <a href="#">Politica de cookies</a> - <a href="#">Terminos de uso</a> </p> </div>
+        </footer>
+
+    </div>
+    <script src="{{ url_for('static', filename='JavaScript/scripts.js') }}"></script>
+</body>
+</html>
