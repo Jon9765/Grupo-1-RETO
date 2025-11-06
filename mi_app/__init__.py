@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+#Crea una instancia y hace la conexion con la base de datos
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://jon:root@localhost/Trambot_db'
 db = SQLAlchemy(app)

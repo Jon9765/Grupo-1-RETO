@@ -1,5 +1,5 @@
 from mi_app import db
-
+#Creación de la tabla Usuarios
 class Usuarios(db.Model):
     __tablename__ = 'usuarios'    
     id = db.Column(db.Integer, primary_key=True)
@@ -14,13 +14,14 @@ class Usuarios(db.Model):
     def __repr__(self):
         return f'<Usuarios {self.id}>'
 
-
+#Creación de la tabla Servicios
 class Servicios(db.Model):
     __tablename__ = 'servicios'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100))
     descripcion = db.Column(db.String(500))
 
+     #iniciador de clase
     def __init__(self, nombre,descripcion):
         self.nombre = nombre
         self.descripcion = descripcion
@@ -28,7 +29,7 @@ class Servicios(db.Model):
     def __repr__(self):
         return f'<Category {self.id}>'
 
-
+#Creación de la tabla que relaciona Usuarios y Servicios(usuario_servicio)
 class usuario_servicios(db.Model):
     __tablename__ = 'usuario_servicios'
     id = db.Column(db.Integer, primary_key=True)
@@ -41,12 +42,18 @@ class usuario_servicios(db.Model):
     usuario = db.relationship('Usuarios', backref=db.backref('usuario_servicios', lazy='dynamic'))
     servicio = db.relationship('Servicios', backref=db.backref('usuario_servicios', lazy='dynamic'))
 
-    def __init__(self, usuario_id, servicio_id):
+    #iniciador de clase
+    def __init__(self, usuario_id, servicio_id,nombre_servicio,costo,renovacion):
         self.usuario_id = usuario_id
         self.servicio_id = servicio_id
+        self.nombre_servicio = nombre_servicio
+        self.costo = costo
+        self.renovacion = renovacion
 
     def __repr__(self):
         return f'<usuario_servicios {self.id}>'
+    
+#Creación de la tabla Contacto
 class contacto(db.Model):
     __tablename__ = "contacto"
     id = db.Column(db.Integer, primary_key=True)
@@ -57,6 +64,7 @@ class contacto(db.Model):
     
     usuario_mensaje = db.relationship('Usuarios', backref=db.backref('contacto', lazy='dynamic'))
     
+     #iniciador de clase
     def __init__(self, correo, asunto, texto):
         self.correo = correo
         self.asunto = asunto
