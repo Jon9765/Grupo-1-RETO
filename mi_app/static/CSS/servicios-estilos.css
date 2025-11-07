@@ -1,17 +1,18 @@
+/*Nuestras variable*/
 :root {
   --color-primario: #1f4e79;     
   --color-secundario: #2d9494;   
   --color-acento: #66c7c7;      
   --color-fondo: #f5f9fa;        
   --color-texto: #333333;     
-  --color-footer: #f5f9fa;
-  --color-dorado: #bf955c;   
+  --color-footer: #f5f9fa;   
 }
 
 * {
   box-sizing: border-box;
 }
 
+/*Body*/
 body{    
     margin:0;
     background-color: var(--color-fondo);
@@ -20,6 +21,10 @@ body{
     font-family: Arial, sans-serif;
 }
 
+/*header*/
+/*para el header los hemos unido al extremo izquierdo con flex start y los hemos separados medianet margin:auto;
+ya que siempre que pones auto buscara estar lo maximo posible a la direccion contraria de tu margin, por ejemplo
+si le das un margin-right ira a la izquierda*/
 .header{
     display: flex;
     align-items: center;
@@ -106,6 +111,10 @@ body{
     display: block;
 }
 
+
+/*Estructura grid de 2 columnas y 2 filas del documento para poder separar cada grupo 
+dandole suficiente espacio para que pueda entrar tras usar el hover de aumentar tamaño,
+también damos transicion y transforamcion.*/
 .greeder {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -144,7 +153,10 @@ body{
 }
 
 
-
+/*FOOTER*/
+/*Damos una estructura grid con 3 columnas y 2 filas para poder organizarlo de forma sencilla y poder 
+dar una estructura clara para cada uno de los elementos de nuestro footer siendo el mapa un 2x2
+ocupando la esquina superior izquierda, un linea abajo que es un 1x3 ocupando abajo y luego 2 cajas a la derecha*/
 .footer{
     display: grid;
     grid-template-columns: repeat(3, 1fr);

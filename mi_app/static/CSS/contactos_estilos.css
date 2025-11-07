@@ -1,3 +1,4 @@
+/*Nuestras variable*/
 :root {
   --color-primario: #1f4e79;     
   --color-secundario: #2d9494;   
@@ -11,6 +12,7 @@
   box-sizing: border-box;
 }
 
+/*Body*/
 body{    
     margin:0;
     background-color: var(--color-fondo);
@@ -18,10 +20,11 @@ body{
     margin: 0;
     font-family: Arial, sans-serif;
 }
-.footer .elementos a {
-    color: var(--color-footer);
-    
-}
+
+/*HEADER*/
+/*para el header los hemos unido al extremo izquierdo con flex start y los hemos separados medianet margin:auto;
+ya que siempre que pones auto buscara estar lo maximo posible a la direccion contraria de tu margin, por ejemplo
+si le das un margin-right ira a la izquierda*/
 .header{
     display: flex;
     align-items: center;
@@ -56,6 +59,8 @@ body{
     border-radius: 4px;
     cursor: pointer;
 }
+
+/*CSS para poder crear un menu desplegable para poder navegar por nuestras paginas*/
 #menu ul{
     list-style: none;
     margin: 0;
@@ -107,7 +112,73 @@ body{
     display: block;
 }
 
+/*Esto es el estilo dado a la información única de esta pagina dando un estilo sencillo y una estructura básica 
+a este formulario para que sea mas intuitivo para las personas.*/
+.contenedor-formulario {
+    background-color: #ffffff;
+    border: 1px solid rgba(0,0,0,0.08);
+    padding: 24px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(16,40,65,0.06);
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: center;
+    border-left: 6px solid var(--color-secundario);
+}
 
+.contenedor-formulario h2 {
+    margin-top: 0;
+    color: var(--color-primario);
+    font-size: 1.3rem;
+}
+
+.contenedor-formulario label {
+    display: block;
+    margin: 10px auto 6px;
+    font-weight: 600;
+    color: var(--color-texto);
+    width: 80%;
+    text-align: left;
+}
+
+.contenedor-formulario input,
+.contenedor-formulario textarea {
+    width: 80%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #d1d7dc;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+.contenedor-formulario input:focus,
+.contenedor-formulario textarea:focus {
+    border-color: var(--color-secundario);
+    box-shadow: 0 6px 18px rgba(45,148,148,0.12);
+}
+.contenedor-formulario textarea {
+    height: 120px;
+    resize: vertical;
+}
+.contenedor-formulario button {
+    background: linear-gradient(90deg, var(--color-secundario), var(--color-acento));
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.contenedor-formulario button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(45,148,148,0.18);
+}
+
+/*FOOTER*/
+/*Damos una estructura grid con 3 columnas y 2 filas para poder organizarlo de forma sencilla y poder 
+dar una estructura clara para cada uno de los elementos de nuestro footer siendo el mapa un 2x2
+ocupando la esquina superior izquierda, un linea abajo que es un 1x3 ocupando abajo y luego 2 cajas a la derecha*/
 .footer{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -180,63 +251,7 @@ body{
 #menu ul li ul li a {
     color: white;
 }
-.contenedor-formulario {
-    background-color: #ffffff;
-    border: 1px solid rgba(0,0,0,0.08);
-    padding: 24px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(16,40,65,0.06);
-    max-width: 520px;
-    margin: 0 auto;
-    text-align: center;
-    border-left: 6px solid var(--color-secundario);
-}
-.contenedor-formulario h2 {
-    margin-top: 0;
-    color: var(--color-primario);
-    font-size: 1.3rem;
-}
-.contenedor-formulario label {
-    display: block;
-    margin: 10px auto 6px;
-    font-weight: 600;
-    color: var(--color-texto);
-    width: 80%;
-    text-align: left;
-}
-.contenedor-formulario input,
-.contenedor-formulario textarea {
-    width: 80%;
-    padding: 10px 12px;
-    margin-bottom: 15px;
-    border: 1px solid #d1d7dc;
-    border-radius: 8px;
-    font-size: 16px;
-    outline: none;
-    transition: border-color .15s ease, box-shadow .15s ease;
-}
-.contenedor-formulario input:focus,
-.contenedor-formulario textarea:focus {
-    border-color: var(--color-secundario);
-    box-shadow: 0 6px 18px rgba(45,148,148,0.12);
-}
-.contenedor-formulario textarea {
-    height: 120px;
-    resize: vertical;
-}
-.contenedor-formulario button {
-    background: linear-gradient(90deg, var(--color-secundario), var(--color-acento));
-    color: #fff;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-}
-.contenedor-formulario button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(45,148,148,0.18);
-}
+
 
 
 @media only screen and (max-width: 900px){

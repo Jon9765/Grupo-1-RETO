@@ -15,7 +15,6 @@ def index():
 #Crea la ruta de servicios.html y le da la capacidad de usar el metodo post
 @catalog.route('/servicio',methods=[ 'GET','POST'])
 def servicio():
-    
     if request.method=='POST':
         #Recoje los datos que el formulario envia
         nombre = request.form['nombre']
@@ -24,11 +23,10 @@ def servicio():
         fecha_actual = date.today()
         renovacion = fecha_actual + timedelta(days=365)
         
-        #Introduce los datos anteriormente recojidos en el objeto dato
+        #Introduce los datos anteriormente recojidos en el objeto dato crea el insert query 
         dato = usuario_servicios(1,id_servicio,nombre,precio,renovacion)
         #Crea un insert query en el 
         db.session.add(dato)
-        #Ejecuta el insert
         db.session.commit()
  
     return render_template("servicios.html")
@@ -44,6 +42,7 @@ def contactos():
         contactos=contacto(correo,asunto,mensaje)
         db.session.add(contactos)
         db.session.commit()
+        
         '''
         password = "pana"
         hash_object = hashlib.sha256(password.encode('utf-8'))
