@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="#.css">
+  <link rel="stylesheet" href="../static/CSS/inicio_sesion.css">
   <title>Inicio de sesión</title>
 </head>
 <body>
@@ -11,25 +11,24 @@
 
     <!-- Iniciar sesión -->
     <div class="form-contenedor contenedor-iniciar-sesion">
-      <form id="loginForm">
+      <form action="/login" method="POST" id="loginForm">
         <h1>Iniciar Sesión</h1>
-        <input type="email" placeholder="Email" id="loginEmail" required>
-        <input type="password" placeholder="Contraseña" id="loginPassword" required>
+        <input type="email" placeholder="Email" id="correo1" name="correo" required>
+        <input type="password" placeholder="Contraseña" id="password1" name="password" required>
         <a href="#">¿Olvidaste tu contraseña?</a>
-        <button type="submit">Entrar</button>
+        <button type="submit" value="submit" >Entrar</button>
         <p class="error-message" id="loginError"></p>
       </form>
     </div>
 
     <!-- Crear cuenta -->
     <div class="form-contenedor contenedor-registrar">
-      <form id="registerForm">
+      <form action="/register" method="POST" id="registerForm">
         <h1>Crear Cuenta</h1>
-        <input type="text" placeholder="Nombre" id="registerName" required>
-        <input type="email" placeholder="Email" id="registerEmail" required>
-        <input type="password" placeholder="Contraseña" id="registerPassword" required>
-        <button type="submit">Registrarse</button>
-        <p class="error-message" id="registerError"></p>
+        <input type="text" placeholder="Nombre" id="nombre" name="nombre" required>
+        <input type="text" placeholder="Email" id="correo" name="correo" required>
+        <input type="password" placeholder="Contraseña" id="password" name="password" required>
+        <button type="submit" value="submit">Registrarse</button>
       </form>
     </div>
 
@@ -50,6 +49,6 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="{{ url_for('static', filename='JavaScript/inicio.js') }}"></script>
 </body>
 </html>

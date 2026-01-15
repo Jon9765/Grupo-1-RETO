@@ -1,16 +1,21 @@
 from mi_app import db
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 #Creación de la tabla Usuarios
-class Usuarios(db.Model):
+class Usuarios(db.Model, UserMixin):
     __tablename__ = 'usuarios'    
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(255))
     correo = db.Column(db.String(255), unique=True)
-    contraseña = db.Column(db.String(255))
+    pwdhash = db.Column(db.String(255))
 
     def __init__(self, nombre, correo, contraseña):
         self.nombre = nombre
         self.correo = correo
-        self.contraseña = contraseña
+        self.pwdhash = generate_password_hash(contraseña)
+        
+    def check_password(self, contraseña):
+        return check_password_hash(self.pwdhash, contraseña)
     def __repr__(self):
         return f'<Usuarios {self.id}>'
 
