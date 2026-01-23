@@ -42,12 +42,9 @@ si le das un margin-right ira a la izquierda*/
     border-radius: 15px;
 }
 
-.header h1{
-    margin-right: 420px;
-}
-
 .header h3{
-    margin-right: 450px;
+    margin-right: auto;
+    margin-left: auto;
     font-size: 25px;
 }
 
@@ -83,9 +80,15 @@ así consiguiendo ser lo mas intuitivo posible para personas mayores*/
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
 #menu{
+    position: relative;
+    display: inline-block;
+    top: 0;
+    right: 0;
     width: 30px;
 }
+
 #menu ul li{
     position: relative;
     width: 100%;
@@ -117,6 +120,7 @@ así consiguiendo ser lo mas intuitivo posible para personas mayores*/
 #menu ul li:hover > ul{
     display: block;
 }
+
 /* fin de header*/
 
 

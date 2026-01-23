@@ -26,8 +26,8 @@
     <div class="form-contenedor contenedor-registrar">
       <form action="/register" method="POST" id="registerForm">
         <h1>Crear Cuenta</h1>
-        <input type="text" placeholder="Nombre" id="nombre" name="nombre" required>
-        <input type="text" placeholder="Email" id="correo" name="correo" required>
+        <input type="text" placeholder="Nombre" id="nombre" name="nombre" pattern="[a-zA-Z]+" required>
+        <input type="text" placeholder="Email" id="correo" name="correo" pattern="[a-zA-Z0-9@.]+" required>
         <input type="password" placeholder="Contraseña" id="password" name="password" required>
         <button type="submit" value="submit">Registrarse</button>
       </form>

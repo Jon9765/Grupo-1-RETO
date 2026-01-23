@@ -42,14 +42,12 @@ si le das un margin-right ira a la izquierda*/
     border-radius: 15px;
 }
 
-.header h1{
-    margin-right: 420px;
-}
-
 .header h3{
-    margin-right: 450px;
+    margin-right: auto;
+    margin-left: auto;
     font-size: 25px;
 }
+
 .sesion{
     border-radius: 15px;
     padding: 5px 5px;

@@ -2,12 +2,15 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_restful import Api
+from flask_jwt_extended import JWTManager
 #from flask_cors import CORS
 #Crea una instancia y hace la conexion con la base de datos
 app = Flask(__name__)
 #CORS(app, origins=["http://localhost:5173"])
 api = Api(app)
 app.secret_key = 'key_dwes_daw2'
+app.config['JWT_SECRET_KEY'] = 'key_dwes_jwt'
+jwt = JWTManager(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://grupo1:grupo1root@pgsql03.dinaserver.com/trambot_db'

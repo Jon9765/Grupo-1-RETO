@@ -6,6 +6,8 @@ from flask_login import current_user, login_user, logout_user, login_required
 from mi_app import login_manager
 from flask_restful import Resource, reqparse, abort
 from mi_app import api
+from mi_app import jwt
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
 # ============= PARSERS PARA VALIDACIÓN =============
 servicio_parser = reqparse.RequestParser()
@@ -91,6 +93,8 @@ def login():
         if not (existing_user and existing_user.check_password(password)):
             return render_template('iniciosesion.html')
         login_user(existing_user, remember=True)
+        access_token = create_access_token(identity=existing_user.id)
+        print(f'Token JWT generado: {access_token}')
         return redirect(url_for('catalog.perfil'))
     
     return render_template('iniciosesion.html')
