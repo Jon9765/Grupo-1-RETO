@@ -22,7 +22,6 @@ body{
     font-family: Arial, sans-serif;
 }
 
-
 /*header*/
 /*para el header los hemos unido al extremo izquierdo con flex start y los hemos separados medianet margin:auto;
 ya que siempre que pones auto buscara estar lo maximo posible a la direccion contraria de tu margin, por ejemplo
@@ -33,6 +32,8 @@ si le das un margin-right ira a la izquierda*/
     justify-content: flex-start;
     background-color: var(--color-primario);
     color: white;
+    margin: 0;
+    width: auto;
     padding: 1rem;
 }
 
@@ -42,19 +43,29 @@ si le das un margin-right ira a la izquierda*/
 }
 
 .header h1{
-    margin-right: auto;
+    margin-right: 420px;
 }
 
 .header h3{
-    margin-right: auto;
+    margin-right: 450px;
     font-size: 25px;
-    margin-left: auto;
 }
 
 
 /*Todo el siguiende codigo esta hecho para que el desplegable del header sea invisible hasta que le demos al boton
 con el fin de no hacer una pagina con opciones molestas y que tampoco sea algo tan cargado de información, 
 así consiguiendo ser lo mas intuitivo posible para personas mayores*/
+
+.sesion{
+    border-radius: 15px;
+    padding: 5px 5px;
+    background-color: var(--color-secundario);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
 #menu ul{
     list-style: none;
@@ -72,7 +83,6 @@ así consiguiendo ser lo mas intuitivo posible para personas mayores*/
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-
 #menu{
     width: 30px;
 }
@@ -107,18 +117,8 @@ así consiguiendo ser lo mas intuitivo posible para personas mayores*/
 #menu ul li:hover > ul{
     display: block;
 }
-
-.sesion{
-    border-radius: 15px;
-    padding: 5px 5px;
-    background-color: var(--color-secundario);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-}
 /* fin de header*/
+
 
 /*En este apartado damos estilo para que pueda entrar la imagen y el texto sin que que haya una superposición*/
 .descripcion-contenedor{
@@ -241,9 +241,8 @@ ocupando la esquina superior izquierda, un linea abajo que es un 1x3 ocupando ab
 }
 
 #map{
-    height: 350px;
-    width: 450px;
-
+    height: 250px;
+    width: 350px;
 }
 
 .contacto{
@@ -320,6 +319,11 @@ ocupando la esquina superior izquierda, un linea abajo que es un 1x3 ocupando ab
         align-items: center; 
         height: 700px;
         margin: 25px;
+    }
+
+    #map{
+    height: 250px;
+    width: 350px;
     }
 
     .descripcion-contenedor div {

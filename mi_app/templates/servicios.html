@@ -28,7 +28,13 @@
                         </li>
                     </ul>
                 </nav>
-                <button class="sesion">Iniciar Sesion</button>
+                 {% block container %}
+             {% if current_user.is_authenticated %}
+             <a href="{{ url_for('catalog.perfil') }}"><button class="sesion">{{ current_user.nombre }}</button></a>
+        {% else %}
+            <a href="{{ url_for('catalog.inicio') }}"><button class="sesion">Iniciar Sesion</button></a>
+            {% endif %}
+        {% endblock %}
             </div>
         </div><br>
         <main class="main">
@@ -95,7 +101,7 @@
         <b>Identificación electrónica (BakQ, DNIe):</b> permiten realizar trámites online con seguridad y firma digital.<br>
         <b>Buzón ciudadano / sugerencias: canal para enviar quejas o propuestas y fomentar la participación ciudadana.</b>
        </p>
-       <div class="pagos">
+      <div class="pagos">
             <div class="basic">
                 <h2><b>Basic</b></h2>
                 <h2>15€/anual</h2>
@@ -105,15 +111,15 @@
                     -gestor IA<br>
                     -Guía paso a paso automatizada.
                 </p>
-              <form id="formulario oculto" action="/servicio" method="POST">
+              <div id="formulario-oculto" action="/servicio" method="POST">
                 <input type="hidden" name="nombre" value="basic">
                 <input type="hidden" name="precio" value="15">
                 <input type="hidden" name="servicio" value="1">
-                <button type="submit">Contratar</button>
-              </form>
+                <button onclick="window.location.href='https://buy.stripe.com/test_eVq28q6fXfiu3twcU71ZS03'">Contratar</button>
+              </div>
             </div>
-            <div class="premium">
-                <h2><b>Premium</b></h2>
+            <div class="essential">
+                <h2><b>Essential</b></h2>
                <h2>25€/anual</h2>
                 <p>
                     -trámites ilimitados<br>
@@ -122,15 +128,15 @@
                     -automatizaciones de tramites(todo se renueva automáticamente)<br>
                     -estado de tramitacion en tiempo real
                </p>
-               <form id="formulario oculto" action="/servicio" method="POST">
+               <div id="formulario-oculto" action="/servicio" method="POST">
                 <input type="hidden" name="nombre" value="premiun">
                 <input type="hidden" name="precio" value="25">
                 <input type="hidden" name="servicio" value="1">
-                <button type="submit">Contratar</button>
-              </form>
+                <button onclick="window.location.href='https://buy.stripe.com/test_14AeVcgUB2vI1lobQ31ZS01'">Contratar</button>
+               </div>
             </div>
-            <div class="essential">
-                <h2><b>Essential</b></h2>
+            <div class="premium">
+                <h2><b>Premium</b></h2>
                 <h2>50€/anual</h2>
                 <p> 
                     Acompañamiento personalizado 1 a 1 (gestor asignado).<br>
@@ -141,12 +147,12 @@
                     Tramitación urgente (prioridad máxima).<br>
                     Panel de control con reportes y analíticas.
                 </p>
-                <form id="formulario oculto" action="/servicio" method="POST">
-                <input type="hidden" name="nombre" value="essential">
+              <div id="formulario-oculto" action="/servicio" method="POST">
+                <input type="hidden" name="nombre" value="premium">
                 <input type="hidden" name="precio" value="50">
                 <input type="hidden" name="servicio" value="1">
-                <button type="submit">Contratar</button>
-              </form>
+                <button onclick="window.location.href='https://buy.stripe.com/test_7sY7sKeMtfiufce07l1ZS00'">Contratar</button>
+              </div>
             </div>
        </div>
 
@@ -172,15 +178,15 @@
                     -gestor IA<br>
                     -Guía paso a paso automatizada.
                 </p> 
-              <form id="formulario oculto" action="/servicio" method="POST">
+              <div id="formulario-oculto" action="/servicio" method="POST">
                 <input type="hidden" name="nombre" value="basic">
                 <input type="hidden" name="precio" value="15">
                 <input type="hidden" name="servicio" value="2">
-                <button type="submit">Contratar</button>
-              </form>
+                <button onclick="window.location.href='https://buy.stripe.com/test_eVq28q6fXfiu3twcU71ZS03'">Contratar</button>
+              </div>
             </div>
-            <div class="premium">
-                <h2><b>Premium</b></h2>
+            <div class="essential">
+                <h2><b>Essential</b></h2>
                <h2>25€/anual</h2>
                 <p>
                     -trámites ilimitados<br>
@@ -189,15 +195,15 @@
                     -automatizaciones de tramites(todo se renueva automáticamente)<br>
                     -estado de tramitacion en tiempo real
                </p> 
-                <form id="formulario oculto" action="/servicio" method="POST">
-                <input type="hidden" name="nombre" value="premiun">
-                <input type="hidden" name="precio" value="25">
-                <input type="hidden" name="servicio" value="2">
-                <button type="submit">Contratar</button>
-              </form>
+                <div id="formulario-oculto" action="/servicio" method="POST">
+                  <input type="hidden" name="nombre" value="premiun">
+                  <input type="hidden" name="precio" value="25">
+                  <input type="hidden" name="servicio" value="2">
+                  <button onclick="window.location.href='https://buy.stripe.com/test_14AeVcgUB2vI1lobQ31ZS01'">Contratar</button>
+                </div>
             </div>
-            <div class="essential">
-                <h2><b>Essential</b></h2>
+            <div class="premium">
+                <h2><b>Premium</b></h2>
                 <h2>50€/anual</h2>
                 <p> 
                     Acompañamiento personalizado 1 a 1 (gestor asignado).<br>
@@ -208,12 +214,12 @@
                     Tramitación urgente (prioridad máxima).<br>
                     Panel de control con reportes y analíticas.
                 </p>
-                 <form id="formulario oculto" action="/servicio" method="POST">
-                <input type="hidden" name="nombre" value="essential">
-                <input type="hidden" name="precio" value="50">
-                <input type="hidden" name="servicio" value="2">
-                <button type="submit">Contratar</button>
-              </form>
+                <div id="formulario-oculto" action="/servicio" method="POST">
+                  <input type="hidden" name="nombre" value="premium">
+                  <input type="hidden" name="precio" value="50">
+                  <input type="hidden" name="servicio" value="2">
+                  <button onclick="window.location.href='https://buy.stripe.com/test_7sY7sKeMtfiufce07l1ZS00'">Contratar</button>
+                </div>
             </div>
        </div>
 
@@ -235,15 +241,15 @@
                     -gestor IA<br>
                     -Guía paso a paso automatizada.
                 </p> 
-              <form id="formulario oculto" action="/servicio" method="POST">
+              <div id="formulario-oculto" action="/servicio" method="POST">
                 <input type="hidden" name="nombre" value="basic">
                 <input type="hidden" name="precio" value="15">
                 <input type="hidden" name="servicio" value="3">
-                <button type="submit">Contratar</button>
-              </form>
+                <button onclick="window.location.href='https://buy.stripe.com/test_eVq28q6fXfiu3twcU71ZS03'">Contratar</button>
+              </div>
             </div>
-            <div class="premium">
-                <h2><b>Premium</b></h2>
+            <div class="essential">
+                <h2><b>Essential</b></h2>
                <h2>25€/anual</h2>
                 <p>
                     -trámites ilimitados<br>
@@ -252,15 +258,15 @@
                     -automatizaciones de tramites(todo se renueva automáticamente)<br>
                     -estado de tramitacion en tiempo real
                </p> 
-                <form id="formulario oculto" action="/servicio" method="POST">
+              <div id="formulario-oculto" action="/servicio" method="POST">
                 <input type="hidden" name="nombre" value="premiun">
                 <input type="hidden" name="precio" value="25">
                 <input type="hidden" name="servicio" value="3">
-                <button type="submit">Contratar</button>
-              </form>
+                <button onclick="window.location.href='https://buy.stripe.com/test_14AeVcgUB2vI1lobQ31ZS01'">Contratar</button>
+              </div>
             </div>
-            <div class="essential">
-                <h2><b>Essential</b></h2>
+            <div class="premium">
+                <h2><b>Premium</b></h2>
                 <h2>50€/anual</h2>
                 <p> 
                     Acompañamiento personalizado 1 a 1 (gestor asignado).<br>
@@ -271,12 +277,12 @@
                     Tramitación urgente (prioridad máxima).<br>
                     Panel de control con reportes y analíticas.
                 </p>
-                  <form id="formulario oculto" action="/servicio" method="POST">
-                <input type="hidden" name="nombre" value="essential">
+              <div id="formulario-oculto" action="/servicio" method="POST">
+                <input type="hidden" name="nombre" value="premium">
                 <input type="hidden" name="precio" value="50">
                 <input type="hidden" name="servicio" value="3">
-                <button type="submit">Contratar</button>
-              </form>
+                <button onclick="window.location.href='https://buy.stripe.com/test_7sY7sKeMtfiufce07l1ZS00'">Contratar</button>
+              </div>
             </div>
        </div>
        
@@ -295,15 +301,15 @@
                     -gestor IA<br>
                     -Guía paso a paso automatizada.
                 </p> 
-                <form id="formulario oculto" action="/servicio" method="POST">
-                <input type="hidden" name="nombre" value="basic">
-                <input type="hidden" name="precio" value="15">
-                <input type="hidden" name="servicio" value="4">
-                <button type="submit">Contratar</button>
-              </form>
+                <div id="formulario-oculto" action="/servicio" method="POST">
+                  <input type="hidden" name="nombre" value="basic">
+                  <input type="hidden" name="precio" value="15">
+                  <input type="hidden" name="servicio" value="4">
+                  <button onclick="window.location.href='https://buy.stripe.com/test_eVq28q6fXfiu3twcU71ZS03'">Contratar</button>
+                </div>
             </div>
-            <div class="premium">
-                <h2><b>Premium</b></h2>
+            <div class="essential">
+                <h2><b>essential</b></h2>
                <h2>25€/anual</h2>
                 <p>
                     -trámites ilimitados<br>
@@ -312,15 +318,15 @@
                     -automatizaciones de tramites(todo se renueva automáticamente)<br>
                     -estado de tramitacion en tiempo real
                </p> 
-                <form id="formulario oculto" action="/servicio" method="POST">
+                <div id="formulario-oculto" action="/servicio" method="POST">
                 <input type="hidden" name="nombre" value="premiun">
                 <input type="hidden" name="precio" value="25">
                 <input type="hidden" name="servicio" value="4">
-                <button type="submit">Contratar</button>
-              </form>
+                <button onclick="window.location.href='https://buy.stripe.com/test_14AeVcgUB2vI1lobQ31ZS01'">Contratar</button>
+                </div>
             </div>
-            <div class="essential">
-                <h2><b>Essential</b></h2>
+            <div class="premium">
+                <h2><b>Premium</b></h2>
                 <h2>50€/anual</h2>
                 <p> 
                     Acompañamiento personalizado 1 a 1 (gestor asignado).<br>
@@ -331,12 +337,12 @@
                     Tramitación urgente (prioridad máxima).<br>
                     Panel de control con reportes y analíticas.
                 </p>
-            <form id="formulario oculto" action="/servicio" method="POST">
-                <input type="hidden" name="nombre" value="essential">
-                <input type="hidden" name="precio" value="50">
-                <input type="hidden" name="servicio" value="4">
-                <button type="submit">Contratar</button>
-              </form>
+            <div id="formulario-oculto" action="/servicio" method="POST">
+              <input type="hidden" name="nombre" value="premium">
+              <input type="hidden" name="precio" value="50">
+              <input type="hidden" name="servicio" value="4">
+              <button onclick="window.location.href='https://buy.stripe.com/test_7sY7sKeMtfiufce07l1ZS00'">Contratar</button>
+            </div>
             </div>
         </div>
      <button onclick="cerrarPanel(4)">Cerrar</button>
@@ -355,15 +361,15 @@
                     -gestor IA<br>
                     -Guía paso a paso automatizada.
                 </p> 
-              <form id="formulario oculto" action="/servicio" method="POST">
+              <div id="formulario-oculto" action="/servicio" method="POST">
                 <input type="hidden" name="nombre" value="basic">
                 <input type="hidden" name="precio" value="15">
                 <input type="hidden" name="servicio" value="5">
-                <button type="submit">Contratar</button>
-              </form>
+                <button onclick="window.location.href='https://buy.stripe.com/test_eVq28q6fXfiu3twcU71ZS03'">Contratar</button>
+              </div>
             </div>
-            <div class="premium">
-                <h2><b>Premium</b></h2>
+            <div class="essential">
+                <h2><b>Essential</b></h2>
                <h2>25€/anual</h2>
                 <p>
                     -trámites ilimitados<br>
@@ -372,15 +378,15 @@
                     -automatizaciones de tramites(todo se renueva automáticamente)<br>
                     -estado de tramitacion en tiempo real
                </p> 
-               <form id="formulario oculto" action="/servicio" method="POST">
+              <div id="formulario-oculto" action="/servicio" method="POST">
                 <input type="hidden" name="nombre" value="premiun">
                 <input type="hidden" name="precio" value="25">
                 <input type="hidden" name="servicio" value="5">
-                <button type="submit">Contratar</button>
-              </form>
+                <button onclick="window.location.href='https://buy.stripe.com/test_14AeVcgUB2vI1lobQ31ZS01'">Contratar</button>
+              </div>
             </div>
-            <div class="essential">
-                <h2><b>Essential</b></h2>
+            <div class="premium">
+                <h2><b>Premium</b></h2>
                 <h2>50€/anual</h2>
                 <p> 
                     Acompañamiento personalizado 1 a 1 (gestor asignado).<br>
@@ -391,12 +397,12 @@
                     Tramitación urgente (prioridad máxima).<br>
                     Panel de control con reportes y analíticas.
                 </p>
-                    <form id="formulario oculto" action="/servicio" method="POST">
-                <input type="hidden" name="nombre" value="essential">
+              <div id="formulario-oculto" action="/servicio" method="POST">
+                <input type="hidden" name="nombre" value="premium">
                 <input type="hidden" name="precio" value="50">
                 <input type="hidden" name="servicio" value="5">
-                <button type="submit">Contratar</button>
-              </form>
+                <button onclick="window.location.href='https://buy.stripe.com/test_7sY7sKeMtfiufce07l1ZS00'">Contratar</button>
+              </div>
             </div>
        </div>
        
@@ -422,7 +428,7 @@
             <div class="contacto">
                 <h2>Formas de contacto</h2>
                 <p>Email: trambot@gmail.com</p>
-                <p>Num:+34 23849348</p>
+                <p>Num:+34 638 49 34 82</p>
             </div>
             <div class="elementos">
                 <p>© 2025 Trambot. Todos los derechos reservados. - <a href="#">Aviso legal</a> - <a href="#">Politica de cookies</a> - <a href="#">Terminos de uso</a> </p> 

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/webp" href="{{ url_for('static', filename='img/logotipo.webp') }}">
   <link rel="stylesheet" href="../static/CSS/inicio_sesion.css">
   <title>Inicio de sesión</title>
 </head>
@@ -13,8 +14,8 @@
     <div class="form-contenedor contenedor-iniciar-sesion">
       <form action="/login" method="POST" id="loginForm">
         <h1>Iniciar Sesión</h1>
-        <input type="email" placeholder="Email" id="correo1" name="correo" required>
-        <input type="password" placeholder="Contraseña" id="password1" name="password" required>
+        <input type="email" placeholder="Email" id="email" name="email" required>
+        <input type="password" placeholder="Contraseña" id="password1" name="contraseña" required>
         <a href="#">¿Olvidaste tu contraseña?</a>
         <button type="submit" value="submit" >Entrar</button>
         <p class="error-message" id="loginError"></p>

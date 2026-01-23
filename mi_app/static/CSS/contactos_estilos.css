@@ -291,6 +291,11 @@ ocupando la esquina superior izquierda, un linea abajo que es un 1x3 ocupando ab
         padding: 1rem;
     }
 
+    #map{
+    height: 250px;
+    width: 350px;
+}
+
     .contenedor-formulario {
         width: 90%;
         text-align: center;
