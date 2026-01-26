@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/webp" href="{{ url_for('static', filename='img/logotipo.webp') }}">
+  <link rel="stylesheet" href="../static/CSS/inicio_sesion.css">
+  <title>Inicio de sesión</title>
+</head>
+<body>
+  <div class="contenedor" id="contenedor">
+
+    <!-- Iniciar sesión -->
+    <div class="form-contenedor contenedor-iniciar-sesion">
+      <form action="/login" method="POST" id="loginForm">
+        <h1>Iniciar Sesión</h1>
+        <input type="email" placeholder="Email" id="email" name="email" required>
+        <input type="password" placeholder="Contraseña" id="password1" name="contraseña" required>
+        <a href="#">¿Olvidaste tu contraseña?</a>
+        <button type="submit" value="submit" >Entrar</button>
+        <p class="error-message" id="loginError"></p>
+      </form>
+    </div>
+
+    <!-- Crear cuenta -->
+    <div class="form-contenedor contenedor-registrar">
+      <form action="/register" method="POST" id="registerForm">
+        <h1>Crear Cuenta</h1>
+        <input type="text" placeholder="Nombre" id="nombre" name="nombre" pattern="[a-zA-Z]+" required>
+        <input type="text" placeholder="Email" id="correo" name="correo" pattern="[a-zA-Z0-9@.]+" required>
+        <input type="password" placeholder="Contraseña" id="password" name="password" required>
+        <button type="submit" value="submit">Registrarse</button>
+      </form>
+    </div>
+
+    <!-- Panel morado que alterna -->
+    <div class="contenedor-alternar">
+      <div class="alternar">
+        <div class="alternar-izquierda toggle-izquierda">
+          <h1>¡Bienvenido de nuevo!</h1>
+          <p>Para mantenerse conectado, inicie sesión con su información personal</p>
+          <button class="hidden" id="login">Iniciar Sesión</button>
+        </div>
+        <div class="alternarderecha toggle-derecha">
+          <h1>¡Hola!</h1>
+          <p>Ingresa tus datos personales y comienza tu viaje con nosotros</p>
+          <button class="hidden" id="registrar">Registrarse</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='JavaScript/inicio.js') }}"></script>
+</body>
+</html>

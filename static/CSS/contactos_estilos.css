@@ -1,0 +1,333 @@
+/*Nuestras variable*/
+:root {
+  --color-primario: #1f4e79;     
+  --color-secundario: #2d9494;   
+  --color-acento: #66c7c7;      
+  --color-fondo: #f5f9fa;        
+  --color-texto: #333333;     
+  --color-footer: #f5f9fa;
+  --color-dorado: #be975b;   
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/*Body*/
+body{    
+    margin:0;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/*HEADER*/
+/*para el header los hemos unido al extremo izquierdo con flex start y los hemos separados medianet margin:auto;
+ya que siempre que pones auto buscara estar lo maximo posible a la direccion contraria de tu margin, por ejemplo
+si le das un margin-right ira a la izquierda*/
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--color-primario);
+    color: white;
+    margin: 0;
+    width: auto;
+    padding: 1rem;
+}
+
+.header img{
+    margin-right: 10px;
+    border-radius: 15px;
+}
+
+.header h3{
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 25px;
+}
+
+.sesion{
+    border-radius: 15px;
+    padding: 5px 5px;
+    background-color: var(--color-secundario);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/*CSS para poder crear un menu desplegable para poder navegar por nuestras paginas*/
+#menu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#menu ul a{
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+#menu{
+    width: 30px;
+}
+#menu ul li{
+    position: relative;
+    width: 100%;
+    font-size: 30px;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+#menu ul li:hover{
+    background-color: #545457;
+}
+#menu ul ul{
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--color-primario);
+    padding: 0;
+}
+#menu ul ul li{
+   float: none;
+   width: 150px;
+   background-color: var(--color-primario);
+}
+#menu ul ul a{
+    line-height: 120%;
+    padding: 10px 15px;
+}
+#menu ul li:hover > ul{
+    display: block;
+}
+
+/*Esto es el estilo dado a la información única de esta pagina dando un estilo sencillo y una estructura básica 
+a este formulario para que sea mas intuitivo para las personas.*/
+.contenedor-formulario {
+    background-color: #ffffff;
+    border: 1px solid rgba(0,0,0,0.08);
+    padding: 24px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(16,40,65,0.06);
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: center;
+    border-left: 6px solid var(--color-secundario);
+}
+
+.contenedor-formulario h2 {
+    margin-top: 0;
+    color: var(--color-primario);
+    font-size: 1.3rem;
+}
+
+.contenedor-formulario label {
+    display: block;
+    margin: 10px auto 6px;
+    font-weight: 600;
+    color: var(--color-texto);
+    width: 80%;
+    text-align: left;
+}
+
+.contenedor-formulario input,
+.contenedor-formulario textarea {
+    width: 80%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #d1d7dc;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+.contenedor-formulario input:focus,
+.contenedor-formulario textarea:focus {
+    border-color: var(--color-secundario);
+    box-shadow: 0 6px 18px rgba(45,148,148,0.12);
+}
+.contenedor-formulario textarea {
+    height: 120px;
+    resize: vertical;
+}
+.contenedor-formulario button {
+    background: linear-gradient(90deg, var(--color-secundario), var(--color-acento));
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.contenedor-formulario button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(45,148,148,0.18);
+}
+
+/*FOOTER*/
+/*Damos una estructura grid con 3 columnas y 2 filas para poder organizarlo de forma sencilla y poder 
+dar una estructura clara para cada uno de los elementos de nuestro footer siendo el mapa un 2x2
+ocupando la esquina superior izquierda, un linea abajo que es un 1x3 ocupando abajo y luego 2 cajas a la derecha*/
+.footer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    margin-top: 50px;
+    background-color: var(--color-primario);
+    color: var(--color-footer);
+    grid-template-rows: auto;
+    
+}
+
+.footer .ubicacion, .footer .redes, .footer .contacto, .footer .legal, .footer .elementos{
+    height: fit-content;
+    width: auto;
+}
+
+.redes{
+    grid-column-start: 3;
+    grid-column: span 1/ span 1;
+    justify-content: center;
+    height: 100%;
+}
+
+.footer .redes a{
+    color: var(--color-footer);
+}
+
+.footer .redes a i{
+    padding-inline: 20px;
+    text-align: center;
+}
+
+.ubicacion{
+    grid-column-start: 1;
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    height: fit-content;
+    text-align: center;
+    justify-items: center;
+}
+
+#map{
+    height: 350px;
+    width: 450px;
+
+}
+
+.contacto{
+    grid-column-start: 3;
+    grid-row-start: 2;
+}
+
+.elementos{
+    grid-column: span 3 / span 3;
+    grid-row-start: 3;
+    grid-column-start: 1;
+    text-align: center;
+}
+
+
+.header h1 {
+    color: white;
+}
+.sesion:hover {
+    background-color: var(--color-acento);
+}
+#menu ul li ul {
+    background-color: var(--color-primario);
+}
+#menu ul li ul li a {
+    color: white;
+}
+
+
+
+@media only screen and (max-width: 900px){
+
+    .header{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    .header img {
+        width: 50px;
+        height: auto;
+        
+    }
+
+    .header h1, .header h3{
+        font-size: medium;
+        margin: 0.5rem 0;
+    }
+
+    .header h3{
+        margin-left: auto;
+        text-align: center;
+        margin-right: auto;
+    }
+
+    .derecha{
+        margin-left: auto;
+    }
+
+    .prin-contenedor {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    #map{
+    height: 250px;
+    width: 350px;
+}
+
+    .contenedor-formulario {
+        width: 90%;
+        text-align: center;
+    }
+
+    .contenedor-formulario form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contenedor-formulario input,
+    .contenedor-formulario textarea,
+    .contenedor-formulario button {
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+
+    .footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .ubicacion{
+        align-self: center;
+    }
+
+    .redes{
+        align-self: center;
+    }
+
+    .contacto{
+        align-self: center;
+    }
+}

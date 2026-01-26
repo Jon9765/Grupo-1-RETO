@@ -1,0 +1,349 @@
+/*Nuestras variable*/
+:root {
+  --color-primario: #1f4e79;     
+  --color-secundario: #2d9494;   
+  --color-acento: #66c7c7;      
+  --color-fondo: #f5f9fa;        
+  --color-texto: #333333;     
+  --color-footer: #f5f9fa;   
+  --color-dorado: #be975b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/*Body*/
+body{    
+    margin:0;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/*header*/
+/*para el header los hemos unido al extremo izquierdo con flex start y los hemos separados medianet margin:auto;
+ya que siempre que pones auto buscara estar lo maximo posible a la direccion contraria de tu margin, por ejemplo
+si le das un margin-right ira a la izquierda*/
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--color-primario);
+    color: white;
+    margin: 0;
+    width: auto;
+    padding: 1rem;
+}
+
+.header img{
+    margin-right: 10px;
+    border-radius: 15px;
+}
+
+.header h3{
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 25px;
+}
+
+
+/*Todo el siguiende codigo esta hecho para que el desplegable del header sea invisible hasta que le demos al boton
+con el fin de no hacer una pagina con opciones molestas y que tampoco sea algo tan cargado de información, 
+así consiguiendo ser lo mas intuitivo posible para personas mayores*/
+
+.sesion{
+    border-radius: 15px;
+    padding: 5px 5px;
+    background-color: var(--color-secundario);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#menu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#menu ul a{
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+#menu{
+    width: 30px;
+}
+#menu ul li{
+    position: relative;
+    width: 100%;
+    font-size: 30px;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+#menu ul li:hover{
+    background-color: #545457;
+}
+#menu ul ul{
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #eee;
+    padding: 0;
+}
+#menu ul ul li{
+   float: none;
+   width: 150px;
+   background-color: #2e518b;
+}
+#menu ul ul a{
+    line-height: 120%;
+    padding: 10px 15px;
+}
+#menu ul li:hover > ul{
+    display: block;
+}
+/* fin de header*/
+
+/*main*/
+
+.contenedor-main{
+    border: #000000 1px solid;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    background-color: var(--color-primario);
+}
+
+
+.usuario{
+    display: flex;
+    align-items: center;   
+    border: #000000 1px solid;
+    width: fit-content;    
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background-color: var(--color-fondo);
+}
+
+.columnas{
+    display: grid;
+    grid-template-rows: repeat(4,25px); 
+    color: var(--color-texto);
+    margin-left: 10px ;
+
+}
+
+
+.usuario img{
+    width: 150px;
+    height: 120px;
+    margin-right: auto;
+    object-fit: cover;
+}
+
+
+.info-extra{
+    grid-area: info;
+    border: #000000 1px solid;
+    height: 1fr;
+    width: 6fr;
+    margin-top: 10px;
+    grid-area: span 2 / span 1 / span 2 / span 2;    
+    border-radius: 10px;
+    background-color: var(--color-fondo);
+    padding: 10px;
+}
+
+.datos-usuario{
+    border: #000000 1px solid; 
+    grid-area: span 1 / span 1 / span 2 / span 1;    
+    width: 350px;
+    height: 250px; 
+    width: 400px;
+    border-radius: 10px;
+    margin-top: 5px;
+    background-color: var(--color-fondo);
+    padding: 10px;
+}
+
+
+
+/*FOOTER*/
+/*Damos una estructura grid con 3 columnas y 2 filas para poder organizarlo de forma sencilla y poder 
+dar una estructura clara para cada uno de los elementos de nuestro footer siendo el mapa un 2x2
+ocupando la esquina superior izquierda, un linea abajo que es un 1x3 ocupando abajo y luego 2 cajas a la derecha*/
+.footer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    margin-top: 50px;
+    background-color: var(--color-primario);
+    color: var(--color-footer);
+    grid-template-rows: auto;
+    
+}
+
+.footer .ubicacion, .footer .redes, .footer .contacto, .footer .legal, .footer .elementos{
+    height: fit-content;
+    width: auto;
+}
+
+.redes{
+    grid-column-start: 3;
+    grid-column: span 1/ span 1;
+    justify-content: center;
+    height: 100%;
+}
+
+.footer .redes a{
+    color: var(--color-footer);
+}
+
+.footer .redes a i{
+    padding-inline: 20px;
+    text-align: center;
+}
+
+.ubicacion{
+    grid-column-start: 1;
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    height: fit-content;
+    text-align: center;
+    justify-items: center;
+}
+
+#map{
+    height: 350px;
+    width: 450px;
+}
+
+.contacto{
+    grid-column-start: 3;
+    grid-row-start: 2;
+}
+
+.elementos{
+    grid-column: span 3 / span 3;
+    grid-row-start: 3;
+    grid-column-start: 1;
+    text-align: center;
+}
+
+.header h1 {
+    color: white;
+}
+.sesion:hover {
+    background-color: var(--color-acento);
+}
+#menu ul li ul {
+    background-color: var(--color-primario);
+}
+#menu ul li ul li a {
+    color: white;
+}
+.contenedor-servicios h4 {
+    color: var(--color-primario);
+}
+.footer .elementos a {
+    color: var(--color-footer);
+    
+}
+
+/*Fin de footer*/
+
+@media only screen and (max-width: 900px) {
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        flex-wrap: wrap; 
+    }
+
+    .header img {
+        width: 50px;
+        height: auto;
+    }
+
+    .header h1, 
+    .header h3 {
+        font-size: 1rem;
+        margin: 0.5rem 0;
+    }
+
+    .header h3 {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+
+    #map{
+    height: 250px;
+    width: 350px;
+    }
+
+    .contenedor-main{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+    
+    .info-extra{
+        height: 1fr;
+        width: 6fr;
+        grid-area: span 3 / span 1 / span 2 / span 1;    
+        border-radius: 10px;
+    }
+
+    .datos-usuario{
+        border: #000000 1px solid; 
+        grid-area: span 2 / span 1 / span 2 / span 1;    
+        width: 350px;
+        height: 250px; 
+        width: 400px;
+        border-radius: 10px;
+        margin-top: 5px
+    }
+
+    
+    .footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+        text-align: center;
+        padding: 1rem 0;
+        gap: 10px;
+    }
+
+    #map{
+    height: 250px;
+    width: 350px;
+}
+
+    .ubicacion,
+    .redes,
+    .contacto {
+        align-self: center;
+    }
+}
