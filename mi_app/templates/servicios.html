@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script src="{{ url_for('static', filename='JavaScript/scripts.js') }}"></script>
 </head>
 <body>
     <div class="main-contenedor">
@@ -39,7 +40,7 @@
         </div><br>
         <main class="main">
             <div class="greeder">
-                <div class="grupo1"  onclick="mostrarPanel(1)">
+                <div data-panel-id="1" class="grupo1 panel"  onclick="mostrarPanel(1)">
                     <h2 class="servicio1">Padrón y Registro Civil</h2>
                     <p class="descripcion1">
                         <br>- Certificado de empadronamiento
@@ -50,7 +51,7 @@
                     </p>
                 </div>
 
-                <div class="grupo2" onclick="mostrarPanel(2)">
+                <div class="grupo2 panel" data-panel-id="2" onclick="mostrarPanel(2)">
                     <h2 class="servicio2">Licencias y Permisos</h2>
                     <p class="descripcion2">
                         - Licencia de obras menores<br>
@@ -61,7 +62,7 @@
                     </p>
                 </div>
 
-                <div class="grupo3" onclick="mostrarPanel(3)">
+                <div class="grupo3 panel" data-panel-id="3" onclick="mostrarPanel(3)">
                     <h2 class="servicio3">Economía e Impuestos</h2>
                     <p class="descripcion3">
                         - Pago de IBI, IVTM, basura, terrazas<br>
@@ -72,7 +73,7 @@
             
                 </div>
 
-                <div class="grupo4" onclick="mostrarPanel(4)">
+                <div class="grupo4 panel" data-panel-id="4" onclick="mostrarPanel(4)">
                     <h2 class="servicio4">Movilidad y Transporte</h2>
                     <p class="descripcion4">
                         - Multas y sanciones<br>
@@ -83,7 +84,7 @@
                     </p>
                 </div>
 
-                <div class="grupo5" onclick="mostrarPanel(5)">
+                <div class="grupo5 panel" data-panel-id="5" onclick="mostrarPanel(5)">
                     <h2 class="servicio5">Vivienda y Medio Ambiente</h2>
                     <p class="descripcion5">
                         - Solicitud de vivienda pública<br>
@@ -115,7 +116,7 @@
                 <input type="hidden" name="nombre" value="basic">
                 <input type="hidden" name="precio" value="15">
                 <input type="hidden" name="servicio" value="1">
-                <button onclick="window.location.href='https://buy.stripe.com/test_eVq28q6fXfiu3twcU71ZS03'">Contratar</button>
+                <button class="plan-btn" data-price-id="price_1Sq8BYCsm3x3qNyuNTqUuaZY" data-panel-id="1"> Contratar </button>
               </div>
             </div>
             <div class="essential">
@@ -132,7 +133,7 @@
                 <input type="hidden" name="nombre" value="premiun">
                 <input type="hidden" name="precio" value="25">
                 <input type="hidden" name="servicio" value="1">
-                <button onclick="window.location.href='https://buy.stripe.com/test_14AeVcgUB2vI1lobQ31ZS01'">Contratar</button>
+                <button data-price-id="price_1Sq8CqCsm3x3qNyu2r4B9J7E" class="plan-btn" data-panel-id="1">Contratar</button>
                </div>
             </div>
             <div class="premium">
@@ -151,7 +152,7 @@
                 <input type="hidden" name="nombre" value="premium">
                 <input type="hidden" name="precio" value="50">
                 <input type="hidden" name="servicio" value="1">
-                <button onclick="window.location.href='https://buy.stripe.com/test_7sY7sKeMtfiufce07l1ZS00'">Contratar</button>
+                <button data-price-id="price_1Sq8DRCsm3x3qNyu8nXutWZP" class="plan-btn" data-panel-id="1"> Contratar</button>
               </div>
             </div>
        </div>
@@ -182,7 +183,7 @@
                 <input type="hidden" name="nombre" value="basic">
                 <input type="hidden" name="precio" value="15">
                 <input type="hidden" name="servicio" value="2">
-                <button onclick="window.location.href='https://buy.stripe.com/test_eVq28q6fXfiu3twcU71ZS03'">Contratar</button>
+                <button class="plan-btn" data-price-id="price_1Sq8BYCsm3x3qNyuNTqUuaZY" data-panel-id="2"> Contratar </button>
               </div>
             </div>
             <div class="essential">
@@ -199,7 +200,7 @@
                   <input type="hidden" name="nombre" value="premiun">
                   <input type="hidden" name="precio" value="25">
                   <input type="hidden" name="servicio" value="2">
-                  <button onclick="window.location.href='https://buy.stripe.com/test_14AeVcgUB2vI1lobQ31ZS01'">Contratar</button>
+                  <button data-price-id="price_1Sq8CqCsm3x3qNyu2r4B9J7E" class="plan-btn" data-panel-id="2">Contratar</button>
                 </div>
             </div>
             <div class="premium">
@@ -218,7 +219,7 @@
                   <input type="hidden" name="nombre" value="premium">
                   <input type="hidden" name="precio" value="50">
                   <input type="hidden" name="servicio" value="2">
-                  <button onclick="window.location.href='https://buy.stripe.com/test_7sY7sKeMtfiufce07l1ZS00'">Contratar</button>
+                  <button data-price-id="price_1Sq8DRCsm3x3qNyu8nXutWZP" class="plan-btn" data-panel-id="2"> Contratar</button>
                 </div>
             </div>
        </div>
@@ -245,7 +246,7 @@
                 <input type="hidden" name="nombre" value="basic">
                 <input type="hidden" name="precio" value="15">
                 <input type="hidden" name="servicio" value="3">
-                <button onclick="window.location.href='https://buy.stripe.com/test_eVq28q6fXfiu3twcU71ZS03'">Contratar</button>
+                <button class="plan-btn" data-price-id="price_1Sq8BYCsm3x3qNyuNTqUuaZY" data-panel-id="3"> Contratar </button>
               </div>
             </div>
             <div class="essential">
@@ -262,9 +263,9 @@
                 <input type="hidden" name="nombre" value="premiun">
                 <input type="hidden" name="precio" value="25">
                 <input type="hidden" name="servicio" value="3">
-                <button onclick="window.location.href='https://buy.stripe.com/test_14AeVcgUB2vI1lobQ31ZS01'">Contratar</button>
-              </div>
+                <button data-price-id="price_1Sq8CqCsm3x3qNyu2r4B9J7E" class="plan-btn" data-panel-id="3">Contratar</button>
             </div>
+          </div>
             <div class="premium">
                 <h2><b>Premium</b></h2>
                 <h2>50€/anual</h2>
@@ -281,7 +282,7 @@
                 <input type="hidden" name="nombre" value="premium">
                 <input type="hidden" name="precio" value="50">
                 <input type="hidden" name="servicio" value="3">
-                <button onclick="window.location.href='https://buy.stripe.com/test_7sY7sKeMtfiufce07l1ZS00'">Contratar</button>
+                <button data-price-id="price_1Sq8DRCsm3x3qNyu8nXutWZP" class="plan-btn" data-panel-id="3"> Contratar</button>
               </div>
             </div>
        </div>
@@ -305,7 +306,7 @@
                   <input type="hidden" name="nombre" value="basic">
                   <input type="hidden" name="precio" value="15">
                   <input type="hidden" name="servicio" value="4">
-                  <button onclick="window.location.href='https://buy.stripe.com/test_eVq28q6fXfiu3twcU71ZS03'">Contratar</button>
+                  <button class="plan-btn" data-price-id="price_1Sq8BYCsm3x3qNyuNTqUuaZY" data-panel-id="4"> Contratar </button>
                 </div>
             </div>
             <div class="essential">
@@ -322,9 +323,9 @@
                 <input type="hidden" name="nombre" value="premiun">
                 <input type="hidden" name="precio" value="25">
                 <input type="hidden" name="servicio" value="4">
-                <button onclick="window.location.href='https://buy.stripe.com/test_14AeVcgUB2vI1lobQ31ZS01'">Contratar</button>
-                </div>
+                <button data-price-id="price_1Sq8CqCsm3x3qNyu2r4B9J7E" class="plan-btn" data-panel-id="4">Contratar</button>
             </div>
+          </div>
             <div class="premium">
                 <h2><b>Premium</b></h2>
                 <h2>50€/anual</h2>
@@ -341,9 +342,9 @@
               <input type="hidden" name="nombre" value="premium">
               <input type="hidden" name="precio" value="50">
               <input type="hidden" name="servicio" value="4">
-              <button onclick="window.location.href='https://buy.stripe.com/test_7sY7sKeMtfiufce07l1ZS00'">Contratar</button>
+              <button data-price-id="price_1Sq8DRCsm3x3qNyu8nXutWZP" class="plan-btn" data-panel-id="4"> Contratar</button>
             </div>
-            </div>
+          </div>
         </div>
      <button onclick="cerrarPanel(4)">Cerrar</button>
     </div>   
@@ -365,7 +366,7 @@
                 <input type="hidden" name="nombre" value="basic">
                 <input type="hidden" name="precio" value="15">
                 <input type="hidden" name="servicio" value="5">
-                <button onclick="window.location.href='https://buy.stripe.com/test_eVq28q6fXfiu3twcU71ZS03'">Contratar</button>
+                <button class="plan-btn" data-price-id="price_1Sq8BYCsm3x3qNyuNTqUuaZY" data-panel-id="5"> Contratar </button>
               </div>
             </div>
             <div class="essential">
@@ -382,9 +383,9 @@
                 <input type="hidden" name="nombre" value="premiun">
                 <input type="hidden" name="precio" value="25">
                 <input type="hidden" name="servicio" value="5">
-                <button onclick="window.location.href='https://buy.stripe.com/test_14AeVcgUB2vI1lobQ31ZS01'">Contratar</button>
-              </div>
+                <button data-price-id="price_1Sq8CqCsm3x3qNyu2r4B9J7E" class="plan-btn" data-panel-id="5">Contratar</button>
             </div>
+          </div>
             <div class="premium">
                 <h2><b>Premium</b></h2>
                 <h2>50€/anual</h2>
@@ -401,7 +402,7 @@
                 <input type="hidden" name="nombre" value="premium">
                 <input type="hidden" name="precio" value="50">
                 <input type="hidden" name="servicio" value="5">
-                <button onclick="window.location.href='https://buy.stripe.com/test_7sY7sKeMtfiufce07l1ZS00'">Contratar</button>
+                <button data-price-id="price_1Sq8DRCsm3x3qNyu8nXutWZP" class="plan-btn" data-panel-id="5"> Contratar</button>
               </div>
             </div>
        </div>
@@ -435,6 +436,6 @@
             </div>
         </footer>
     </div>
-    <script src="{{ url_for('static', filename='JavaScript/scripts.js') }}"></script>
+
 </body>
 </html>

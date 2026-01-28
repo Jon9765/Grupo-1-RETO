@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     </head>
     <body>
         <header class="header" id="header">
@@ -31,22 +32,148 @@
         <main>
             <div class="contenedor-main">
                 <div class="usuario">
-                    <img src="{{url_for('static', filename='img/logotipo.webp')}}" class="fotito" alt="foto de">
-                    <div class="columnas">
+                    <img src="{{url_for('static', filename='img/logotipo.webp')}}" class="fotito" alt="foto de usuario">
+                    <div class="usuario-info">
                         <h3>Datos de Usuario</h3>
-                        <p>Nombre de usuario:(vue)</p>
-                        <p>Edad:</p>
-                        <p>Dirección:</p>
-                        <p>DNI: </p>
+                        {% block container %}
+                            <p><strong>Usuario:</strong> {{current_user.nombre}}</p>
+                        {% endblock %}
                     </div>
                 </div>  
-                <div class="info-extra">info-extra</div>
-                <div class="datos-usuario">datos uduario</div>
-                
-            </div>
+                {% block container2 %}
+                <div class="datos-usuario" id="app">
+                    <h3>Supscriciones</h3>
+                    <div class="servicio" v-show="paginaActual === 1">
+                            <ul>
+                            {% for servicio in servicios %}
+                                <li>
+                                    {% if servicio.servicio_id == 1 %}
+                                        <p>Padrón y registro Civil:{{ servicio.nombre_servicio }} contratado.</p>
+                                    {% else %}
+                                        <p>Padrón y registro Civil: no está contratado.</p>
+                                    {% endif %}
+                                </li> 
+                                {% endfor %} 
+                            </ul>       
+                        <div class="info" >
+                            <p class="descripcion1">
+                            <br>- Certificado de empadronamiento
+                            <br>- Alta / baja / cambio de domicilio
+                            <br>- Certificados de nacimiento, matrimonio, defunción
+                            <br>- Identificación electrónica (BakQ, DNIe)
+                            <br>- buzón ciudadano / sugerencias
+                            </p>
+                        </div>
+                    </div>
 
-        </div>
+                    <div class="servicio" v-show="paginaActual === 2">
+                            <ul>
+                            {% for servicio in servicios %}
+                                <li>
+                                    {% if servicio.servicio_id == 2 %}
+                                        <p>Licencias y permisos: {{ servicio.nombre_servicio }} contratado.</p>
+                                    {% else %}
+                                        <p>Licencias y permisos:  no está contratado.</p>
+                                    {% endif %}
+                                </li> 
+                                {% endfor %} 
+                            </ul>                        
+                        <div class="info" >
+                            <p class="descripcion2">
+                            - Licencia de obras menores<br>
+                            - Licencia de actividad o apertura<br>
+                            - Ocupación de vía pública / terrazas<br>
+                            - Permiso para rodajes o eventos<br>
+                            - Declaración responsable de guías turísticos
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="servicio" v-show="paginaActual === 3">
+                         <ul>
+                            {% for servicio in servicios %}
+                                <li>
+                                    {% if servicio.servicio_id == 3 %}
+                                        <p>Economía e impuestos: {{ servicio.nombre_servicio }} contratado.</p>
+                                    {% else %}
+                                        <p>Economía e impuestos:  no está contratado.</p>
+                                    {% endif %}
+                                </li> 
+                                {% endfor %} 
+                            </ul>       
+                        <div class="info" >
+                            <p class="descripcion3">
+                            - Pago de IBI, IVTM, basura, terrazas<br>
+                            - Declaración de la Renta<br>
+                            - Certificados fiscales, censos, IVA<br>
+                            - Becas y programas de prácticas
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="servicio" v-show="paginaActual === 4">
+                         <ul>
+                            {% for servicio in servicios %}
+                                <li>
+                                    {% if servicio.servicio_id == 4 %}
+                                        <p>Movilidad y transporte: {{ servicio.nombre_servicio }} contratado.</p>
+                                    {% else %}
+                                        <p>Movilidad y transporte:  no está contratado.</p>
+                                    {% endif %}
+                                </li> 
+                                {% endfor %} 
+                            </ul>       
+                        <div class="info" >
+                            <p class="descripcion4">
+                            - Multas y sanciones<br>
+                            - Tarjeta de residente (zonas OTA)<br>
+                            - Licencias de transporte<br>
+                            - Certificado CAP<br>
+                            - Autorizaciones especiales de transporte
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="servicio" v-show="paginaActual === 5">
+                            <ul>
+                            {% for servicio in servicios %}
+                                <li>
+                                    {% if servicio.servicio_id == 2 %}
+                                        <p>Vivienda y medio ambiente: {{ servicio.nombre_servicio }} contratado.</p>
+                                    {% else %}
+                                        <p>Vivienda y medio ambiente:  no está contratado.</p>
+                                    {% endif %}
+                                </li> 
+                                {% endfor %} 
+                            </ul>       
+                            <div class="info" >
+                            <p class="descripcion5">
+                                - Solicitud de vivienda pública<br>
+                                - Dependencia y ayudas familiares<br>
+                                - Autorizaciones ambientales
+                            </p>
+                        </div>
+                    </div>
+                 
+                    <div class="botones">
+                        <button class="Anterior" @click="anterior" :disabled="paginaActual === 1">Anterior</button>
+                        <button class="Siguiente" @click="siguiente" :disabled="paginaActual === paginasTotales">Siguiente</button>
+                    </div>
+                    {% endblock %}
+                </div>
+                
+                <div class="info-extra">
+                <h3>Chat con Trambot</h3>
+                <div id="chat">
+                    <div id="messages"></div>
+                    <input type="text" id="input" placeholder="Escribe algo y presiona Enter">
+                </div>
+            </div>
+            </div>
+            
+                
         </main>
+
         <footer class="footer">
             <div class="ubicacion">
                 <h2>Nuestra ubicacion</h2> 
@@ -68,7 +195,44 @@
                 <p>© 2025 Trambot. Todos los derechos reservados. - <a href="#">Aviso legal</a> - <a href="#">Politica de cookies</a> - <a href="#">Terminos de uso</a> </p> 
             </div>
         </footer>
-        <script src="{{ url_for('static', filename='JavaScript/scripts.js') }}"></script>
+        <script src="{{ url_for('static', filename='JavaScript/chatbot.js') }}"></script>
+        <script>
 
+            // ----------------------------
+            // Inicializar mapa Leaflet
+            // ----------------------------
+            const map = L.map('map').setView([43.320324, -1.972454], 16);
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            const marker = L.marker([43.320324, -1.972454])
+                .addTo(map)
+                .bindPopup('<b>Trambot </b><br> Nuestra empresa <img src="img/empresa.webp" width="150px" height="100px">');
+
+            marker.on('click', function() {
+                marker.openPopup();
+            });
+
+            Vue.createApp({
+                data() {
+                    return {
+                        paginaActual: 1,
+                        totalPaginas: 5 
+                    }
+                },
+                methods: {
+                    siguiente() {
+                        if (this.paginaActual < this.totalPaginas) this.paginaActual++;
+                    },
+                    anterior() {
+                        if (this.paginaActual > 1) this.paginaActual--;
+                    }
+                }
+            }).mount('#app')
+
+        </script>
     </body>
 </html>

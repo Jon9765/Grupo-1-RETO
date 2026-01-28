@@ -1,15 +1,39 @@
-const contenedor = document.getElementById("contenedor");
-const registrarBtn = document.getElementById("registrar");
-const loginBtn = document.getElementById("login");
-const loginForm = document.getElementById("loginForm");
-const registerForm = document.getElementById("registerForm");
-const loginError = document.getElementById("loginError");
-const registerError = document.getElementById("registerError");
+import axios from "axios";
 
-registrarBtn.addEventListener('click', () => {
-  contenedor.classList.add("active");
-});
+const login = async (email, password) => {
+  try {
+    const response = await fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
-loginBtn.addEventListener('click', () => {
-  contenedor.classList.remove("active");
-});
+    const data = await response.json();
+
+    if (data.success) {
+      // Guardar el token en localStorage
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user_id", data.user_id);
+      localStorage.setItem("nombre", data.nombre);
+
+      console.log("✓ Token guardado:", data.token);
+      return data;
+    } else {
+      console.error("✗ Error:", data.error);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const getUserData = async () => {
+  const token = localStorage.getItem("token");
+  const response = await axios.get("http://localhost:5000/api/servicios", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
