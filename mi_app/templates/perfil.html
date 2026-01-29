@@ -42,20 +42,41 @@
                 </div>  
                 {% block container2 %}
                 <div class="datos-usuario" id="app">
-                    <h3>Supscriciones</h3>
+    <h3>Suscripciones</h3>
+    
+    <!-- Panel 1: Padrón y Registro Civil -->
                     <div class="servicio" v-show="paginaActual === 1">
-                            <ul>
-                            {% for servicio in servicios %}
-                                <li>
-                                    {% if servicio.servicio_id == 1 %}
-                                        <p>Padrón y registro Civil:{{ servicio.nombre_servicio }} contratado.</p>
-                                    {% else %}
-                                        <p>Padrón y registro Civil: no está contratado.</p>
-                                    {% endif %}
-                                </li> 
-                                {% endfor %} 
-                            </ul>       
-                        <div class="info" >
+                        {% set panel_1 = namespace(encontrado=false) %}
+                        {% for servicio in servicios %}
+                            {% if servicio.servicio_id == 1 %}
+                                {% set panel_1.encontrado = true %}
+                                <p><strong>Padrón y Registro Civil:</strong> {{ servicio.nombre_servicio }} contratado ({{ servicio.costo }}€/{{ servicio.renovacion }})</p>
+                                <a href="{{ url_for('catalog.cancelar_suscripcion', servicio_id=1) }}" 
+                                onclick="return confirm('¿Estás seguro de cancelar esta suscripción?')">
+                                    <button>Cancelar suscripción</button>
+                                </a>
+                                <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8CqCsm3x3qNyu2r4B9J7E') }}?panel_id=1">
+                                    <button>Mejorar a Essential</button>
+                                </a>
+                                <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8DRCsm3x3qNyu8nXutWZP') }}?panel_id=1">
+                                    <button>Mejorar a Premium</button>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                        {% if not panel_1.encontrado %}
+                            <p><strong>Padrón y Registro Civil:</strong> No está contratado.</p>
+                            <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8BYCsm3x3qNyuNTqUuaZY') }}?panel_id=1">
+                                <button>Contratar Basic</button>
+                            </a>
+                            <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8CqCsm3x3qNyu2r4B9J7E') }}?panel_id=1">
+                                <button>Contratar Essential</button>
+                            </a>
+                            <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8DRCsm3x3qNyu8nXutWZP') }}?panel_id=1">
+                                <button>Contratar Premium</button>
+                            </a>
+                        {% endif %}
+                        
+                        <div class="info">
                             <p class="descripcion1">
                             <br>- Certificado de empadronamiento
                             <br>- Alta / baja / cambio de domicilio
@@ -66,19 +87,39 @@
                         </div>
                     </div>
 
-                    <div class="servicio" v-show="paginaActual === 2">
-                            <ul>
-                            {% for servicio in servicios %}
-                                <li>
-                                    {% if servicio.servicio_id == 2 %}
-                                        <p>Licencias y permisos: {{ servicio.nombre_servicio }} contratado.</p>
-                                    {% else %}
-                                        <p>Licencias y permisos:  no está contratado.</p>
-                                    {% endif %}
-                                </li> 
-                                {% endfor %} 
-                            </ul>                        
-                        <div class="info" >
+                    <!-- Panel 2: Licencias y Permisos -->
+                   <div class="servicio" v-show="paginaActual === 2">
+                        {% set panel_2 = namespace(encontrado=false) %}
+                        {% for servicio in servicios %}
+                            {% if servicio.servicio_id == 2 and not panel_2.encontrado %}
+                                {% set panel_2.encontrado = true %}
+                                <p><strong>Licencias y Permisos:</strong> {{ servicio.nombre_servicio }} contratado ({{ servicio.costo }}€/{{ servicio.renovacion }})</p>
+                                <a href="{{ url_for('catalog.cancelar_suscripcion', servicio_id=2) }}" 
+                                onclick="return confirm('¿Estás seguro de cancelar esta suscripción?')">
+                                    <button>Cancelar suscripción</button>
+                                </a>
+                                <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8CqCsm3x3qNyu2r4B9J7E') }}?panel_id=2">
+                                    <button>Mejorar a Essential</button>
+                                </a>
+                                <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8DRCsm3x3qNyu8nXutWZP') }}?panel_id=2">
+                                    <button>Mejorar a Premium</button>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                        {% if not panel_2.encontrado %}
+                            <p><strong>Licencias y Permisos:</strong> No está contratado.</p>
+                            <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8BYCsm3x3qNyuNTqUuaZY') }}?panel_id=2">
+                                <button>Contratar Basic</button>
+                            </a>
+                            <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8CqCsm3x3qNyu2r4B9J7E') }}?panel_id=2">
+                                <button>Contratar Essential</button>
+                            </a>
+                            <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8DRCsm3x3qNyu8nXutWZP') }}?panel_id=2">
+                                <button>Contratar Premium</button>
+                            </a>
+                        {% endif %}
+                        
+                        <div class="info">
                             <p class="descripcion2">
                             - Licencia de obras menores<br>
                             - Licencia de actividad o apertura<br>
@@ -89,19 +130,39 @@
                         </div>
                     </div>
 
+                    <!-- Panel 3: Economía e Impuestos -->
                     <div class="servicio" v-show="paginaActual === 3">
-                         <ul>
-                            {% for servicio in servicios %}
-                                <li>
-                                    {% if servicio.servicio_id == 3 %}
-                                        <p>Economía e impuestos: {{ servicio.nombre_servicio }} contratado.</p>
-                                    {% else %}
-                                        <p>Economía e impuestos:  no está contratado.</p>
-                                    {% endif %}
-                                </li> 
-                                {% endfor %} 
-                            </ul>       
-                        <div class="info" >
+                        {% set panel_3 = namespace(encontrado=false) %}
+                        {% for servicio in servicios %}
+                            {% if servicio.servicio_id == 3 %}
+                                {% set panel_3.encontrado = true %}
+                                <p><strong>Economía e Impuestos:</strong> {{ servicio.nombre_servicio }} contratado ({{ servicio.costo }}€/{{ servicio.renovacion }})</p>
+                                <a href="{{ url_for('catalog.cancelar_suscripcion', servicio_id=3) }}" 
+                                onclick="return confirm('¿Estás seguro de cancelar esta suscripción?')">
+                                    <button>Cancelar suscripción</button>
+                                </a>
+                                <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8CqCsm3x3qNyu2r4B9J7E') }}?panel_id=3">
+                                    <button>Mejorar a Essential</button>
+                                </a>
+                                <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8DRCsm3x3qNyu8nXutWZP') }}?panel_id=3">
+                                    <button>Mejorar a Premium</button>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                        {% if not panel_3.encontrado %}
+                            <p><strong>Economía e Impuestos:</strong> No está contratado.</p>
+                            <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8BYCsm3x3qNyuNTqUuaZY') }}?panel_id=3">
+                                <button>Contratar Basic</button>
+                            </a>
+                            <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8CqCsm3x3qNyu2r4B9J7E') }}?panel_id=3">
+                                <button>Contratar Essential</button>
+                            </a>
+                            <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8DRCsm3x3qNyu8nXutWZP') }}?panel_id=3">
+                                <button>Contratar Premium</button>
+                            </a>
+                        {% endif %}
+                        
+                        <div class="info">
                             <p class="descripcion3">
                             - Pago de IBI, IVTM, basura, terrazas<br>
                             - Declaración de la Renta<br>
@@ -111,19 +172,39 @@
                         </div>
                     </div>
 
+                    <!-- Panel 4: Movilidad y Transporte -->
                     <div class="servicio" v-show="paginaActual === 4">
-                         <ul>
-                            {% for servicio in servicios %}
-                                <li>
-                                    {% if servicio.servicio_id == 4 %}
-                                        <p>Movilidad y transporte: {{ servicio.nombre_servicio }} contratado.</p>
-                                    {% else %}
-                                        <p>Movilidad y transporte:  no está contratado.</p>
-                                    {% endif %}
-                                </li> 
-                                {% endfor %} 
-                            </ul>       
-                        <div class="info" >
+                        {% set panel_4 = namespace(encontrado=false) %}
+                        {% for servicio in servicios %}
+                            {% if servicio.servicio_id == 4 %}
+                                {% set panel_4.encontrado = true %}
+                                <p><strong>Movilidad y Transporte:</strong> {{ servicio.nombre_servicio }} contratado ({{ servicio.costo }}€/{{ servicio.renovacion }})</p>
+                                <a href="{{ url_for('catalog.cancelar_suscripcion', servicio_id=4) }}" 
+                                onclick="return confirm('¿Estás seguro de cancelar esta suscripción?')">
+                                    <button>Cancelar suscripción</button>
+                                </a>
+                                <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8CqCsm3x3qNyu2r4B9J7E') }}?panel_id=4">
+                                    <button>Mejorar a Essential</button>
+                                </a>
+                                <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8DRCsm3x3qNyu8nXutWZP') }}?panel_id=4">
+                                    <button>Mejorar a Premium</button>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                        {% if not panel_4.encontrado %}
+                            <p><strong>Movilidad y Transporte:</strong> No está contratado.</p>
+                            <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8BYCsm3x3qNyuNTqUuaZY') }}?panel_id=4">
+                                <button>Contratar Basic</button>
+                            </a>
+                            <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8CqCsm3x3qNyu2r4B9J7E') }}?panel_id=4">
+                                <button>Contratar Essential</button>
+                            </a>
+                            <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8DRCsm3x3qNyu8nXutWZP') }}?panel_id=4">
+                                <button>Contratar Premium</button>
+                            </a>
+                        {% endif %}
+                        
+                        <div class="info">
                             <p class="descripcion4">
                             - Multas y sanciones<br>
                             - Tarjeta de residente (zonas OTA)<br>
@@ -134,34 +215,53 @@
                         </div>
                     </div>
 
+                    <!-- Panel 5: Vivienda y Medio Ambiente -->
                     <div class="servicio" v-show="paginaActual === 5">
-                            <ul>
-                            {% for servicio in servicios %}
-                                <li>
-                                    {% if servicio.servicio_id == 2 %}
-                                        <p>Vivienda y medio ambiente: {{ servicio.nombre_servicio }} contratado.</p>
-                                    {% else %}
-                                        <p>Vivienda y medio ambiente:  no está contratado.</p>
-                                    {% endif %}
-                                </li> 
-                                {% endfor %} 
-                            </ul>       
-                            <div class="info" >
+                        {% set panel_5 = namespace(encontrado=false) %}
+                        {% for servicio in servicios %}
+                            {% if servicio.servicio_id == 5 %}
+                                {% set panel_5.encontrado = true %}
+                                <p><strong>Vivienda y Medio Ambiente:</strong> {{ servicio.nombre_servicio }} contratado ({{ servicio.costo }}€/{{ servicio.renovacion }})</p>
+                                <a href="{{ url_for('catalog.cancelar_suscripcion', servicio_id=5) }}" 
+                                onclick="return confirm('¿Estás seguro de cancelar esta suscripción?')">
+                                    <button>Cancelar suscripción</button>
+                                </a>
+                                <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8CqCsm3x3qNyu2r4B9J7E') }}?panel_id=5">
+                                    <button>Mejorar a Essential</button>
+                                </a>
+                                <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8DRCsm3x3qNyu8nXutWZP') }}?panel_id=5">
+                                    <button>Mejorar a Premium</button>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                        {% if not panel_5.encontrado %}
+                            <p><strong>Vivienda y Medio Ambiente:</strong> No está contratado.</p>
+                            <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8BYCsm3x3qNyuNTqUuaZY') }}?panel_id=5">
+                                <button>Contratar Basic</button>
+                            </a>
+                            <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8CqCsm3x3qNyu2r4B9J7E') }}?panel_id=5">
+                                <button>Contratar Essential</button>
+                            </a>
+                            <a href="{{ url_for('catalog.crear_suscripcion', price_id='price_1Sq8DRCsm3x3qNyu8nXutWZP') }}?panel_id=5">
+                                <button>Contratar Premium</button>
+                            </a>
+                        {% endif %}
+                        
+                        <div class="info">
                             <p class="descripcion5">
-                                - Solicitud de vivienda pública<br>
-                                - Dependencia y ayudas familiares<br>
-                                - Autorizaciones ambientales
+                            - Solicitud de vivienda pública<br>
+                            - Dependencia y ayudas familiares<br>
+                            - Autorizaciones ambientales
                             </p>
                         </div>
                     </div>
-                 
+                
                     <div class="botones">
                         <button class="Anterior" @click="anterior" :disabled="paginaActual === 1">Anterior</button>
-                        <button class="Siguiente" @click="siguiente" :disabled="paginaActual === paginasTotales">Siguiente</button>
+                        <button class="Siguiente" @click="siguiente" :disabled="paginaActual === totalPaginas">Siguiente</button>
                     </div>
-                    {% endblock %}
                 </div>
-                
+              {% endblock %}  
                 <div class="info-extra">
                 <h3>Chat con Trambot</h3>
                 <div id="chat">

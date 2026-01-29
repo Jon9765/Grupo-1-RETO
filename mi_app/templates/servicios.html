@@ -33,7 +33,7 @@
              {% if current_user.is_authenticated %}
              <a href="{{ url_for('catalog.perfil') }}"><button class="sesion">{{ current_user.nombre }}</button></a>
         {% else %}
-            <a href="{{ url_for('catalog.inicio') }}"><button class="sesion">Iniciar Sesion</button></a>
+            <a href="{{ url_for('catalog.login') }}"><button class="sesion">Iniciar Sesion</button></a>
             {% endif %}
         {% endblock %}
             </div>

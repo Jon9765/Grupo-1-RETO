@@ -11,7 +11,7 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 import stripe
 import os
 from dotenv import load_dotenv
-import google.generativeai as genai
+import requests
 import time
 from functools import wraps
 
@@ -21,13 +21,14 @@ load_dotenv()
 # Configuración de la clave secreta de Stripe desde .env
 stripe.api_key = os.getenv('STRIPE_API_KEY')
 
-# Configuración de Gemini
-genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
+# Configuración de Ollama
+OLLAMA_API_URL = os.getenv('OLLAMA_API_URL', 'http://localhost:11434')
+OLLAMA_MODEL = os.getenv('OLLAMA_MODEL', 'mistral')
 
-# Sistema de caché y throttling para Gemini
+# Sistema de caché y throttling para Ollama
 _chat_cache = {}
 _last_request_time = {}
-MIN_INTERVAL_SECONDS = 5  # Mínimo 5 segundos entre solicitudes (para cuentas nuevas de Gemini)
+MIN_INTERVAL_SECONDS = 2  # Mínimo 2 segundos entre solicitudes por usuario
 
 
 # ============= PARSERS PARA VALIDACIÓN =============
@@ -61,7 +62,7 @@ def index():
 
 @catalog.route('/api/chat', methods=['POST', 'GET'])
 def chat():
-    """Endpoint para chat con Gemini AI con throttling y caché
+    """Endpoint para chat con Ollama AI con throttling y caché
     
     GET: /api/chat?message=tu%20mensaje
     POST: {"message": "tu mensaje"}
@@ -104,33 +105,19 @@ def chat():
         if cache_key in _chat_cache:
             return jsonify({"message": _chat_cache[cache_key], "cached": True})
 
-        # Usar el modelo de Gemini disponible con reintentos
-        model = genai.GenerativeModel('gemini-2.5-flash')
+        # Usar Ollama para generar respuesta
+        ollama_url = f"{OLLAMA_API_URL}/api/generate"
+        payload = {
+            "model": OLLAMA_MODEL,
+            "prompt": user_message,
+            "stream": False
+        }
         
-        # Reintentos con backoff exponencial para manejar errores 429
-        max_retries = 3
-        retry_delay = 1
-        bot_message = None
+        response = requests.post(ollama_url, json=payload, timeout=60)
+        response.raise_for_status()
         
-        for attempt in range(max_retries):
-            try:
-                response = model.generate_content(user_message)
-                bot_message = response.text
-                break
-            except Exception as retry_error:
-                error_str = str(retry_error)
-                if "429" in error_str or "quota" in error_str.lower():
-                    if attempt < max_retries - 1:
-                        print(f"Intento {attempt + 1} falló, reintentando en {retry_delay} segundos...")
-                        time.sleep(retry_delay)
-                        retry_delay *= 2  # Backoff exponencial
-                    else:
-                        return jsonify({
-                            "error": "Se excedió el límite de uso de la API de Gemini. Intenta más tarde.",
-                            "retry_after": 60
-                        }), 429
-                else:
-                    raise retry_error
+        result = response.json()
+        bot_message = result.get('response', 'No se pudo generar una respuesta')
         
         # Guardar en caché y actualizar tiempo
         _chat_cache[cache_key] = bot_message
@@ -141,22 +128,20 @@ def chat():
             _chat_cache.clear()
         
         return jsonify({"message": bot_message})
+    except requests.exceptions.ConnectionError:
+        print("Error: No se pudo conectar a Ollama")
+        return jsonify({
+            "error": "No se pudo conectar al servidor de Ollama. Verifica que Ollama esté ejecutándose."
+        }), 503
+    except requests.exceptions.Timeout:
+        print("Error: Timeout al conectar a Ollama")
+        return jsonify({
+            "error": "Timeout: La solicitud a Ollama tardó demasiado. Intenta de nuevo."
+        }), 504
     except Exception as e:
         error_str = str(e)
         print(f"Error en chat: {error_str}")
-        
-        # Mejorar mensaje de error para el usuario
-        if "429" in error_str or "quota" in error_str.lower():
-            return jsonify({
-                "error": "Se excedió el límite de uso de la API de Gemini. Intenta más tarde.",
-                "retry_after": 60
-            }), 429
-        elif "401" in error_str or "unauthorized" in error_str.lower():
-            return jsonify({
-                "error": "Error de autenticación con Gemini API. Verifica tu clave API."
-            }), 401
-        else:
-            return jsonify({"error": error_str}), 500
+        return jsonify({"error": error_str}), 500
 
 
 @catalog.route('/servicio', methods=['GET', 'POST'])
@@ -268,18 +253,6 @@ def logout():
     return redirect(url_for('catalog.index'))
 
 
-@catalog.route("/perfil")
-@login_required
-def perfil():
-    servicio = usuario_servicios.query.filter_by(usuario_id=current_user.id).all()
-    return render_template('perfil.html', servicios=servicio)
-
-
-@catalog.route('/inicio', methods=['GET', 'POST'])
-def inicio():
-    return render_template('iniciosesion.html')
-
-
 PRODUCTOS = {
     "price_1Sq8BYCsm3x3qNyuNTqUuaZY": {"nombre": "Basic", "precio": 15},
     "price_1Sq8CqCsm3x3qNyu2r4B9J7E": {"nombre": "Essential", "precio": 25},
@@ -297,26 +270,19 @@ def crear_suscripcion(price_id):
     if price_id not in PRODUCTOS:
         return "Producto no válido", 400
 
-    # Verificar si ya tiene una suscripción en ESTE panel específico
+    # Verificar si ya tiene una suscripción EN ESTE PANEL específico
     suscripcion_existente = usuario_servicios.query.filter_by(
         usuario_id=current_user.id,
         servicio_id=panel_id
     ).first()
     
-    if suscripcion_existente:
-        # Permitir upgrade/downgrade guardando el tipo de acción
-        accion = "upgrade"  # Puedes determinar esto comparando precios
-        success_url = f"{request.host_url}suscripcion-exitosa/{price_id}?session_id={{CHECKOUT_SESSION_ID}}&panel_id={panel_id}&accion={accion}"
-    else:
-        # Nueva suscripción
-        success_url = f"{request.host_url}suscripcion-exitosa/{price_id}?session_id={{CHECKOUT_SESSION_ID}}&panel_id={panel_id}&accion=nueva"
-
+    # Permitir crear/actualizar la suscripción del panel
     session = stripe.checkout.Session.create(
         mode="subscription",
         line_items=[{"price": price_id, "quantity": 1}],
-        success_url=success_url,
-        cancel_url=f"{request.host_url}",
-        client_reference_id=f"{current_user.id}|{panel_id}"  # Incluir panel_id
+        success_url=f"{request.host_url}suscripcion-exitosa/{price_id}?session_id={{CHECKOUT_SESSION_ID}}&panel_id={panel_id}",
+        cancel_url=f"{request.host_url}perfil",
+        client_reference_id=f"{current_user.id}|{panel_id}"
     )
 
     return redirect(session.url, code=303)
@@ -327,7 +293,6 @@ def crear_suscripcion(price_id):
 def suscripcion_exitosa(price_id):
     session_id = request.args.get("session_id")
     panel_id = request.args.get("panel_id")
-    accion = request.args.get("accion", "nueva")
     
     if not session_id or not panel_id:
         return "Falta session_id o panel_id", 400
@@ -340,14 +305,14 @@ def suscripcion_exitosa(price_id):
     usuario_id = session_obj.client_reference_id.split('|')[0]
     producto = PRODUCTOS[price_id]
 
-    # Buscar suscripción existente en este panel
+    # Buscar si ya existe una suscripción en este panel
     suscripcion_existente = usuario_servicios.query.filter_by(
         usuario_id=usuario_id,
         servicio_id=panel_id
     ).first()
 
     if suscripcion_existente:
-        # Actualizar el plan existente (upgrade/downgrade)
+        # Actualizar el plan (upgrade/downgrade)
         suscripcion_existente.nombre_servicio = producto['nombre']
         suscripcion_existente.costo = producto['precio']
         mensaje = f"Plan mejorado a {producto['nombre']} correctamente"
@@ -364,24 +329,16 @@ def suscripcion_exitosa(price_id):
         mensaje = f"Suscripción {producto['nombre']} activada correctamente"
     
     db.session.commit()
+    return redirect(url_for('catalog.perfil'))
 
-    return mensaje
 
-
-# Ruta adicional para ver todas las suscripciones del usuario
-@catalog.route("/mis-suscripciones")
+@catalog.route("/perfil")
 @login_required
-def mis_suscripciones():
-    suscripciones = usuario_servicios.query.filter_by(
-        usuario_id=current_user.id
-    ).all()
-    
-    # Aquí puedes renderizar una plantilla con todas las suscripciones
-    # agrupadas por panel
-    return render_template('mis_suscripciones.html', suscripciones=suscripciones)
+def perfil():
+    servicios = usuario_servicios.query.filter_by(usuario_id=current_user.id).all()
+    return render_template('perfil.html', servicios=servicios)
 
 
-# Ruta para cancelar una suscripción específica
 @catalog.route("/cancelar-suscripcion/<int:servicio_id>")
 @login_required
 def cancelar_suscripcion(servicio_id):
@@ -393,11 +350,10 @@ def cancelar_suscripcion(servicio_id):
     if not suscripcion:
         return "Suscripción no encontrada", 404
     
-    # Aquí deberías también cancelar en Stripe si es necesario
     db.session.delete(suscripcion)
     db.session.commit()
     
-    return redirect(url_for('catalog.mis_suscripciones'))
+    return redirect(url_for('catalog.perfil'))
 
 
 

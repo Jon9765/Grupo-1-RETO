@@ -1,4 +1,4 @@
-// Chat con Gemini AI
+// Chat con Ollama AI
 document.addEventListener('DOMContentLoaded', function() {
     const messagesDiv = document.getElementById('messages');
     const inputField = document.getElementById('input');

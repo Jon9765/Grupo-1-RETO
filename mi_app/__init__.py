@@ -8,8 +8,7 @@ import stripe
 import os
 app = Flask(__name__)
 #85.50.79.98 ip publica
-stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
-endpoint_secret = os.getenv("STRIPE_WEBHOOK_SECRET")
+
 
 
 api = Api(app)
