@@ -1,4 +1,4 @@
-from flask import Flask, request, Blueprint, render_template, jsonify, redirect, url_for,session
+from flask import Flask, request, Blueprint, render_template, jsonify, redirect, url_for,session,make_response
 from datetime import date, timedelta
 from mi_app import db
 from mi_app.catalogo.modelos import Usuarios, Servicios, usuario_servicios, contacto
@@ -13,7 +13,6 @@ import os
 from dotenv import load_dotenv
 import requests
 import time
-from functools import wraps
 
 # Cargar variables del archivo .env
 load_dotenv() 
@@ -193,13 +192,9 @@ def login():
         return redirect(url_for('catalog.perfil'))
     
     if request.method == 'POST':
-        # Detectar si es JSON (API) o form data (HTML)
-        if request.is_json:
-            correo = request.json.get('email', '')
-            password = request.json.get('password', '')
-        else:
-            correo = request.form.get('email', '')
-            password = request.form.get('contraseña', '')
+        
+        correo = request.form.get('email', '')
+        password = request.form.get('contraseña', '')
         
         existing_user = Usuarios.query.filter_by(correo=correo).first()
 
@@ -211,17 +206,9 @@ def login():
         login_user(existing_user, remember=True)
         access_token = create_access_token(identity=str(existing_user.id))
         print(f'Token JWT generado: {access_token}')
-        
-        # Si es JSON, devolver token
-        if request.is_json:
-            return jsonify({
-                'success': True,
-                'token': access_token,
-                'user_id': existing_user.id,
-                'nombre': existing_user.nombre
-            }), 200
-        
-        return redirect(url_for('catalog.perfil'))
+        resp = make_response(redirect(url_for('catalog.perfil')))
+        resp.set_cookie('access_token_cookie', access_token, httponly=True, samesite='Lax')
+        return resp
     
     return render_template('iniciosesion.html')
 
@@ -250,7 +237,10 @@ def register():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('catalog.index'))
+    resp = make_response(redirect(url_for('catalog.index')))
+    resp.set_cookie('access_token_cookie', '', expires=0)  # borra la cookie
+
+    return resp
 
 
 PRODUCTOS = {
@@ -335,8 +325,10 @@ def suscripcion_exitosa(price_id):
 @catalog.route("/perfil")
 @login_required
 def perfil():
+    servi =  Servicios.query.get(current_user.id)
     servicios = usuario_servicios.query.filter_by(usuario_id=current_user.id).all()
-    return render_template('perfil.html', servicios=servicios)
+    usuario = Usuarios.query.get(current_user.id)
+    return render_template('perfil.html', servicios=servicios, usuario=usuario, servi=servi)
 
 
 @catalog.route("/cancelar-suscripcion/<int:servicio_id>")
@@ -369,7 +361,7 @@ class ServiciosApi(Resource):
     - PUT /api/servicios/<id> - Actualiza un servicio
     - DELETE /api/servicios/<id> - Elimina un servicio
     """
-    @jwt_required()
+    @jwt_required(locations=["cookies"])
     def get(self, id=None):
         try:
             # GET /api/servicios - Listar todos
@@ -419,7 +411,7 @@ class ServiciosApi(Resource):
                 'error': 'Error interno del servidor',
                 'message': str(e)
             }, 500
-    @jwt_required()
+    @jwt_required(locations=["cookies"])
     def post(self):
         """Crear un nuevo servicio"""
         try:
@@ -454,7 +446,7 @@ class ServiciosApi(Resource):
                 'error': 'Error al crear el servicio',
                 'message': str(e)
             }, 500
-    @jwt_required()
+    @jwt_required(locations=["cookies"])
     def put(self, id):
         """Actualizar un servicio"""
         try:
@@ -488,7 +480,7 @@ class ServiciosApi(Resource):
                 'error': 'Error al actualizar el servicio',
                 'message': str(e)
             }, 500
-    @jwt_required()
+    @jwt_required(locations=["cookies"])
     def delete(self, id):
         """Eliminar un servicio"""
         try:
@@ -537,7 +529,7 @@ class SuscripcionesApi(Resource):
     - PUT /api/suscripciones/<id> - Actualiza una suscripción
     - DELETE /api/suscripciones/<id> - Elimina una suscripción
     """
-    @jwt_required()
+    @jwt_required(locations=["cookies"])
     def get(self, id=None):
         try:
             # GET /api/suscripciones - Listar todas
@@ -597,7 +589,7 @@ class SuscripcionesApi(Resource):
                 'error': 'Error interno del servidor',
                 'message': str(e)
             }, 500
-    @jwt_required()
+    @jwt_required(locations=["cookies"])
     def post(self):
         """Crear una nueva suscripción"""
         try:
@@ -654,7 +646,7 @@ class SuscripcionesApi(Resource):
                 'error': 'Error al crear la suscripción',
                 'message': str(e)
             }, 500
-    @jwt_required()
+    @jwt_required(locations=["cookies"])
     def put(self, id):
         """Actualizar una suscripción"""
         try:
@@ -697,7 +689,7 @@ class SuscripcionesApi(Resource):
                 'error': 'Error al actualizar la suscripción',
                 'message': str(e)
             }, 500
-    @jwt_required()
+    @jwt_required(locations=["cookies"])
     def delete(self, id):
         """Eliminar una suscripción"""
         try:
@@ -737,7 +729,7 @@ class ContactoApi(Resource):
     - POST /api/contacto - Crea un nuevo mensaje
     - DELETE /api/contacto/<id> - Elimina un mensaje
     """
-    @jwt_required()
+    @jwt_required(locations=["cookies"])
     def get(self, id=None):
         try:
             if id is None:
@@ -787,7 +779,7 @@ class ContactoApi(Resource):
                 'error': 'Error interno del servidor',
                 'message': str(e)
             }, 500
-    @jwt_required()
+    @jwt_required(locations=["cookies"])
     def post(self):
         """Crear un nuevo mensaje de contacto"""
         try:
@@ -819,7 +811,7 @@ class ContactoApi(Resource):
                 'error': 'Error al enviar el mensaje',
                 'message': str(e)
             }, 500
-    @jwt_required()
+    @jwt_required(locations=["cookies"])
     def delete(self, id):
         """Eliminar un mensaje de contacto"""
         try:
@@ -856,7 +848,7 @@ class UsuariosApi(Resource):
     - GET /api/usuarios - Lista todos los usuarios
     - GET /api/usuarios/<id> - Obtiene un usuario específico
     """
-    @jwt_required()
+    @jwt_required(locations=["cookies"])
     def get(self, id=None):
         try:
             if id is None:

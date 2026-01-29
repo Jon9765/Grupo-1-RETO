@@ -16,7 +16,10 @@ CORS(app)
 CORS(app, origins=["http://localhost:8080"], supports_credentials=True)
 app.secret_key = 'key_dwes_daw2'
 app.config['JWT_SECRET_KEY'] = 'key_dwes_jwt'
-#app.config['JWT_TOKEN_LOCATION'] = 'cookies'
+app.config['JWT_TOKEN_LOCATION'] = 'cookies'
+app.config['JWT_COOKIE_SECURE'] = False           # True si usas HTTPS
+app.config['JWT_ACCESS_COOKIE_PATH'] = '/'        # cookies accesibles en todo el sitio
+app.config['JWT_COOKIE_CSRF_PROTECT'] = False     # Habilitar protección CSRF
 jwt = JWTManager(app)
 login_manager = LoginManager()
 login_manager.init_app(app)

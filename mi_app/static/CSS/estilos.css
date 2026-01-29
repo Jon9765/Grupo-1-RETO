@@ -159,6 +159,7 @@ poner un hover el cual se agranda y muestra el contenido y cambia la linea del b
 .servicio-contenedor h2{
     text-align: left;
     margin-left: 20px;
+    margin-top: 100px;
     
 }
 
@@ -182,6 +183,8 @@ poner un hover el cual se agranda y muestra el contenido y cambia la linea del b
     border-left: 4px solid var(--color-secundario);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+
 
 .invi{
     opacity: 0;                  

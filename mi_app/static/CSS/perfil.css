@@ -7,6 +7,7 @@
   --color-texto: #333333;     
   --color-footer: #f5f9fa;   
   --color-dorado: #be975b;
+  --color-fondo-alternativo: #6b93ff;
 }
 
 * {
@@ -19,7 +20,6 @@ body{
     background-color: var(--color-fondo);
     color: var(--color-texto);
     margin: 0;
-    font-family: Arial, sans-serif;
 }
 
 /*header*/
@@ -124,46 +124,92 @@ así consiguiendo ser lo mas intuitivo posible para personas mayores*/
     padding: 20px;
     border-radius: 8px;
     display: grid;
-    grid-template-columns: 2fr 2fr;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
     background-color: var(--color-primario);
 }
 
 
 .usuario{
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 20px;   
     border: #000000 1px solid;
-    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    background-color: var(--color-fondo);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    background-color: var(--color-fondo-alternativo);
     grid-column: 1;
-    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+}
+
+.usuario h2{
+    color: white;
+    font-size: 22px;
+    margin: 0 0 12px 0;
 }
 
 .usuario-info{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    flex: 1;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    background-color: var(--color-fondo);
+    align-items: start;
+    border-radius: 10px;
+    padding: 12px;
+    gap: 12px;
+    align-self: stretch;
+    height: 300px;
+
+}
+
+.usuario-info div{
+    height: max-content;
 }
 
 .usuario-info h3{
-    margin: 0;
     color: var(--color-primario);
 }
 
 .usuario-info p{
-    margin: 0;
     font-size: 14px;
     color: var(--color-texto);
 }
 
 
+
+
+/* Usuario info layout */
+.usuario-info .fotito{
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.usuario-info > div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+}
+
+.btn-cancelar,
+.btn-mejorar,
+.btn-contratar{
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+.btn-cancelar{ background-color: #e05a5a; color: white; }
+.btn-mejorar{ background-color: var(--color-secundario); color: white; }
+.btn-contratar{ background-color: var(--color-acento); color: white; }
+.btn-cancelar:hover{ opacity: 0.9 }
+.btn-mejorar:hover{ opacity: 0.9 }
+.btn-contratar:hover{ opacity: 0.95 }
+
+.usuario-info p + h3{ margin-top: 8px; }
+.usuario-info p{ margin: 0; line-height: 1.45; color: var(--color-texto); }
 
 .usuario img{
     width: 150px;
@@ -177,33 +223,76 @@ así consiguiendo ser lo mas intuitivo posible para personas mayores*/
 
 .info-extra{
     border: #000000 1px solid;
-    height: 450px; 
     border-radius: 10px;
-    background-color: var(--color-fondo);
-    padding: 10px;
+    background-color: var(--color-fondo-alternativo);
+    padding: 15px;
     grid-column: 1 / -1;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
+    height: 450px;
+}
+
+.info-extra h3{
+    margin: 0 0 15px 0;
+    color: white;
+}
+
+.info-extra > div:not(h3){
+    flex: 1;
+    background-color: var(--color-fondo);
+    border-radius: 10px;
+    padding: 15px;
 }
 
 .datos-usuario{
     border: #000000 1px solid;
-    height: fit-content;
     border-radius: 10px;
-    background-color: var(--color-fondo);
-    padding: 15px;
+    background-color: var(--color-fondo-alternativo);
     grid-column: 2;
     grid-row: 1;
     display: flex;
     flex-direction: column;
+    padding: 15px;
+}
+
+.datos-usuario h3{
+    margin: 0 0 15px 0;
+    color: white;
+}
+
+.datos-usuario > div:not(h3){
+    flex: 1;
+    background-color: var(--color-fondo);
+    padding: 15px;
 }
 
 .datos-usuario .botones{
     display: flex;
     gap: 10px;
-    margin-top: auto;
+    margin-top: -10px;
     justify-content: center;
+    background-color: var(--color-fondo);
+    border-radius: 0 0 10px 10px;
+    padding:-10px;
+}
+
+.btn-mejorar, .btn-contratar, .btn-cancelar{
+    background-color: var(--color-secundario);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    transition: all 0.3s ease;
+    margin-inline: 5px;
+}
+
+.servicio{
+    background-color: var(--color-fondo);
+    width: auto;
+    border-radius: 10px 10px 0 0;
 }
 
 .info{
@@ -219,14 +308,11 @@ así consiguiendo ser lo mas intuitivo posible para personas mayores*/
     cursor: pointer;
     flex: 1;
     transition: all 0.3s ease;
+    height: 50px;
+    font-weight: 600;
 }
-
-.Siguiente:hover:not(:disabled){
-    background-color: var(--color-acento);
-}
-
 .Anterior{
-    background-color: var(--color-acento);
+    background-color: var(--color-secundario);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -234,10 +320,19 @@ así consiguiendo ser lo mas intuitivo posible para personas mayores*/
     cursor: pointer;
     flex: 1;
     transition: all 0.3s ease;
+    height: 50px;
+    font-weight: 600;
 }
 
-.Anterior:hover:not(:disabled){
-    background-color: var(--color-secundario);
+
+.datos-usuario .botones .Siguiente:hover:not(:disabled),
+.datos-usuario .botones .Anterior:hover:not(:disabled){
+    background-color: var(--color-acento);
+}
+
+.datos-usuario .botones button:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 
@@ -328,6 +423,12 @@ ocupando la esquina superior izquierda, un linea abajo que es un 1x3 ocupando ab
 
 @media only screen and (max-width: 900px) {
 
+    .btn-mejorar, .btn-contratar, .btn-cancelar{
+        padding: 8px 12px;
+        font-size: 14px;
+        height: 35px;
+    }
+
     .header {
         display: flex;
         flex-direction: row;
@@ -361,20 +462,45 @@ ocupando la esquina superior izquierda, un linea abajo que es un 1x3 ocupando ab
     }
 
     .contenedor-main{
-        display: grid;
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 20px;
+    }
+
+    .usuario{
+        padding: 15px;
+    }
+
+
+    .usuario-info{
+        padding: 15px;
+        flex-direction: column;
     }
     
     .info-extra{
         grid-column: 1;
         border-radius: 10px;
+        padding: 15px;
+    }
+
+    .info-extra h3{
+        margin: 0 0 15px 0;
     }
 
     .datos-usuario{
         border: #000000 1px solid; 
         grid-column: 1;
         border-radius: 10px;
+        padding: 15px;
+    }
+
+    /* Ensure datos-usuario appears first on small screens */
+    .datos-usuario{ order: 0; }
+    .usuario{ order: 1; }
+    .info-extra{ order: 2; }
+
+    .datos-usuario h3{
+        margin: 0 0 15px 0;
     }
 
     
@@ -473,7 +599,6 @@ ocupando la esquina superior izquierda, un linea abajo que es un 1x3 ocupando ab
     border: none;
     border-top: 2px solid var(--color-primario);
     font-size: 14px;
-    font-family: Arial, sans-serif;
 }
 
 #input:focus {
